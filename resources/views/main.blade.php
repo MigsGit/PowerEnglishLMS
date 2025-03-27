@@ -11,9 +11,9 @@
     <title>Power English Notice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+            body {
+                font-family: Arial, sans-serif;
+            }
         /* Navbar Styling */
             .custom-navbar {
                 background-color: white;
@@ -65,45 +65,35 @@
             .custom-button:hover {
                 background-color: #00796b; /* Darker shade on hover */
             }
-
-        /* Responsive Adjustments */
-        /* @media (max-width: 992px) {
-            .navbar-nav {
+            .hero-section {
+                background: #f8f9fa;
+                padding: 60px 15px;
                 text-align: center;
             }
-            .separator {
-                display: none;
+            .notice-list {
+                margin-top: 20px;
             }
-        } */
-        .hero-section {
-            background: #f8f9fa;
-            padding: 60px 15px;
-            text-align: center;
-        }
-        .notice-list {
-            margin-top: 20px;
-        }
-        .table-responsive {
-            overflow-x: auto;
-        }
-         /* Fixed Footer */
-         .footer {
-            background: #343a40;
-            color: white;
-            padding: 15px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .hero-section h2 {
-                font-size: 24px;
+            .table-responsive {
+                overflow-x: auto;
             }
-            .hero-section p {
-                font-size: 14px;
+            /* Fixed Footer */
+            .footer {
+                background: #343a40;
+                color: white;
+                padding: 15px 0;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
             }
-        }
+            @media (max-width: 768px) {
+                .hero-section h2 {
+                    font-size: 24px;
+                }
+                .hero-section p {
+                    font-size: 14px;
+                }
+            }
     </style>
     
 </head>
