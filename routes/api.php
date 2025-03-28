@@ -19,3 +19,4 @@ use App\Http\Controllers\AnnouncementController;
 //     return $request->user();
 // });
 Route::get('get_announcement_table', [AnnouncementController::class, 'getAnnouncementTable'])->name('announcement.table');
+Route::get('get_pages_by_id', [AnnouncementController::class, 'getPagesById'])->name('announcement.table');

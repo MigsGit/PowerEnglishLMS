@@ -19,10 +19,9 @@
 
 <script setup>
     import {ref, reactive, onMounted, watch, nextTick} from 'vue';
-    import DataTable from 'datatables.net-vue3'
-    import DataTablesCore from 'datatables.net-bs5'
-    DataTable.use(DataTablesCore)
-
+    import Router from '../router';
+    import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
+    
     const tableProcedureList = ref()
 
     const columns =[
@@ -31,7 +30,25 @@
         { data: 'created_at',       title: 'Registration Date'  },
         { data: 'views_count',       title: 'Views'  },
     ];
+
+    Router.push({
+        name: 'AnnouncementMainPage'
+    })
+    const getPagesById = async (id) => {
+       let params = {
+
+        }
+        await axios.get('/api/get_pages_by_id',params)
+        .then((res) => {
+            console.log('dadasd');
+        }).catch((err) => {
+            console.log('error');
+        });
+    }
+    
     onMounted(() => {
+        getPagesById();
+
         /*
             axios.get('api/get_announcement_table')
             .then((res) => {
@@ -39,10 +56,6 @@
             }).catch((err) => {
 
             });
-              <th>Number</th>
-                <th>Title</th>
-                <th>Registration Date</th>
-                <th>Views</th>
         */
     })
 </script>

@@ -1,12 +1,20 @@
 <template>
     <Navbar/>
-    <AnnouncementZoomInstallation/>
+    <component :is="selectedRouteComponent" />
     <TableAnnouncement/>
 </template>
 
 <script setup>
+    import {defineProps,ref,onMounted,computed } from 'vue'
+    
     import Navbar from '../layouts/Navbar.vue';
     import Footer from '../layouts/Footer.vue';
     import TableAnnouncement from './TableAnnouncement.vue';
-    import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
+    
+    const props = defineProps({
+        selectedRouteComponent: {
+            type: String,
+            required: true,
+        },
+    });
 </script>

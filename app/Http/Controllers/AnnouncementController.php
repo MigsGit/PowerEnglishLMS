@@ -36,4 +36,13 @@ class AnnouncementController extends Controller
             throw $th;
         }
     }
+    public function getPagesById(){
+        date_default_timezone_set('Asia/Manila');
+        try {
+            return $announement_table = Announcement::get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    
 }

@@ -21,4 +21,6 @@
     import Footer from '../layouts/Footer.vue';
     import TableAnnouncement from './TableAnnouncement.vue';
     import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
+    
+    
 </script>

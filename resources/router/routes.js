@@ -1,4 +1,7 @@
 import  MainPage from '../pages/MainPage.vue';
+import  AnnouncementZoomInstallation from '../pages/AnnouncementZoomInstallation.vue';
+import  AnnouncementMainPage from '../pages/AnnouncementMainPage.vue';
+
 // import Login from '../js/views/Login.vue'
 
 console.log('routes');
@@ -6,6 +9,7 @@ console.log('routes');
 export default [
     {
         path: '/',
+        name: 'MainPage',
         component: MainPage,
         // children: [
         //     {
@@ -15,10 +19,19 @@ export default [
         //     },
         // ]
     },
-    // {
-    //     path: '/unauthorized',
-    //     component: Unauthorized,
-    // },
+    {
+        path: '/#/AnnouncementZoomInstallation',
+        name: 'AnnouncementZoomInstallation',
+        component: AnnouncementZoomInstallation,
+        
+    },
+    {
+        path: '/#/AnnouncementMainPage',
+        name: 'AnnouncementMainPage',
+        component: AnnouncementMainPage,
+        
+    },
+    
     // {
     //     path: '/panel_template/',
     //     component: PanelTemplate,
