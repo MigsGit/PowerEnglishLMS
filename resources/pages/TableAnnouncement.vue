@@ -1,4 +1,5 @@
 <template>
+
   <!-- Notices Table -->
     <div class="container notice-list overflow-auto">
         <DataTable
