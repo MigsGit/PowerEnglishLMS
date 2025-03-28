@@ -20,10 +20,10 @@ class AnnouncementController extends Controller
                 return $result .= ++$count;
             })
             ->addColumn('rawAnnouncementList', function($row){
+                $api_link = encrypt($row->id);
                 $result = "";
                 $result .= "<center>";
-                // $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' class='link-primary'> $row->description </a>";
-                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' announcement-api-link='$row->id' class='link-primary'> $row->description </a>";
+                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-api-link='$api_link' class='link-primary'> $row->description </a>";
                 $result .= "</center>";
                 return $result;
             })
@@ -40,7 +40,8 @@ class AnnouncementController extends Controller
     public function getPagesById(Request $request){
         date_default_timezone_set('Asia/Manila');
         try {
-            return $announement_table = Announcement::where('id',$request->apiLink)->get();
+            $api_link = decrypt($request->apiLink);
+            return $announement_table = Announcement::where('id',$api_link)->get();
         } catch (\Throwable $th) {
             throw $th;
         }

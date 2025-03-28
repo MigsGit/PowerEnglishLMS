@@ -70,10 +70,8 @@
                 if((btnAnnoucementPageLink !== null)){
                     btnAnnoucementPageLink.addEventListener('click', function(event){
                         event.preventDefault();
-                        let announcementPageLink = this.getAttribute("announcement-page-link");
                         let announcementApiLink = this.getAttribute("announcement-api-link");
-                        //pageLink.value = routeMapping[announcementPageLink]; //Convert String to Object
-                        getPagesById(announcementApiLink,routeMapping[announcementPageLink])
+                        getPagesById(announcementApiLink)
                     });
                 }
             },
@@ -86,12 +84,8 @@
     const selectedRouteComponent = computed(() => {
         console.log(typeof(pageLink.value));
         return pageLink.value;
-        //console.log(announcementPageLink);
-        //return announcementPageLink;
     });
-    
-     const getPagesById = async (apiLink,announcementPageLink) => {
-        
+     const getPagesById = async (apiLink) => {
         let params = {
            'apiLink' : apiLink
         }

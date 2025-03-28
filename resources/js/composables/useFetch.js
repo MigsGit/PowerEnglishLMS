@@ -10,7 +10,6 @@ export default function useFetch ()
             console.error("🚨 Error: API URL is null or undefined!");
             return;
         }
-       
         try {
             const response = await axios.get(apiUrl, {
                 params: params,
