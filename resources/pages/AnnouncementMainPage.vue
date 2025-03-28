@@ -40,12 +40,10 @@
     import Navbar from '../layouts/Navbar.vue';
     import Footer from '../layouts/Footer.vue';
     import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
-
     import useFetchAxios from "../js/composables/useFetch";
     const {
         axiosFetchData
     } = useFetchAxios();
-   
     
     // Create an object map where keys are strings and values are actual objects
     const routeMapping = {
@@ -82,19 +80,21 @@
    
     // Compute which route component to use
     const selectedRouteComponent = computed(() => {
-        console.log(typeof(pageLink.value));
         return pageLink.value;
     });
-     const getPagesById = async (apiLink) => {
+
+     // Read and Save Announcement
+    const getPagesById = async (apiLink) => {
         let params = {
            'apiLink' : apiLink
         }
         axiosFetchData(params,'api/get_pages_by_id',function(response){
-            let announcement  = response.data[0];
+            let announcement  = response.data.announement_table[0];
             pageLink.value = routeMapping[announcement.page_link]; //Convert String to Object
             descriptions.value = announcement.description;
             viewsCount.value = announcement.views_count;
             createdAt.value = announcement.created_at;
+            tableAnnouncementList.value.dt.draw();
         });
     }
     

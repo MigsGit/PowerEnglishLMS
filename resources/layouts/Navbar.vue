@@ -50,7 +50,10 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary ms-2" href="#">My Page</a>
+                        <router-link class="btn btn-primary ms-2" :to="{ name: 'Login' }">
+                           My Page
+                        </router-link>
+
                     </li>
                 </ul>
             </div>

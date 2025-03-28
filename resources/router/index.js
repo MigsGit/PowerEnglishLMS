@@ -6,8 +6,9 @@ const router = createRouter({
         createWebHistory is creating a #hashtag to direct to diff (router 3)
         createWebHashHistory is creating a #hashtag to direct to diff (router 4)
      */
-    // history: createMemoryHistory(),
-    history: createWebHistory(),
+    // history: createMemoryHistory(),createWebHashHistory
+    history: createWebHashHistory(),
+    // history: createWebHistory(),
     routes
 })
 
