@@ -12,7 +12,7 @@
             </ul>
         </div>
     </div>
-    <component :is="selectedRouteComponent" />
+    <component :is="selectedRouteComponent" :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions"/>
    <!-- Notices Table -->
     <div class="container notice-list overflow-auto">
         <DataTable
@@ -53,6 +53,10 @@
     };
     const tableAnnouncementList = ref()
     const pageLink = ref(null);
+    const createdAt = ref(null);
+    const descriptions = ref(null);
+    const viewsCount = ref(null);
+
     const columns =[
         { data: 'rawNumberList',    title: 'Number' },
         {
@@ -94,9 +98,9 @@
         axiosFetchData(params,'api/get_pages_by_id',function(response){
             let announcement  = response.data[0];
             pageLink.value = routeMapping[announcement.page_link]; //Convert String to Object
-            announcement.description;
-            announcement.views_count;
-            created_at;
+            descriptions.value = announcement.description;
+            viewsCount.value = announcement.views_count;
+            createdAt.value = announcement.created_at;
         });
     }
     

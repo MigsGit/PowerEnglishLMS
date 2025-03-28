@@ -3,7 +3,7 @@
         <!-- Announcement Content -->
         <div class="announcement-body p-4 border rounded shadow-sm bg-white">
             <!-- Announcement Header Table -->
-            <AnnouncementHeader/>
+            <AnnouncementHeader :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions"/>
             <p>Hello Power English members!</p>
             <p>Power English is a program that will give you confidence in speaking English.</p>
             
@@ -50,5 +50,20 @@
     </div>
 </template>
 <script setup>
+    import {defineProps} from 'vue'
     import AnnouncementHeader from './AnnouncementHeader.vue';
+    const props = defineProps({
+        createdAt: {
+            type:'string',
+            required: true,
+        },
+        viewsCount: {
+            type:'string',
+            required: true,
+        },
+        descriptions: {
+            type:'string',
+            required: true,
+        },
+    })
 </script>
