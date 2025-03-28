@@ -26,7 +26,29 @@
 
     const columns =[
         { data: 'rawNumberList',    title: 'Number' },
-        { data: 'rawAnnouncementList',  title: 'Title' },
+        //{ data: 'rawAnnouncementList',  title: 'Title' },
+        
+        {
+            data: 'rawAnnouncementList',
+            title: 'Title',
+            orderable: false,
+            searchable: false,
+            createdCell(cell) {
+                let btnAnnoucementPageLink = cell.querySelector("#btnAnnoucementPageLink")
+                
+               
+                if((btnAnnoucementPageLink !== null)){
+                    btnAnnoucementPageLink.addEventListener('click', function(event){
+                        event.preventDefault();
+                       
+                        let announcementPageLink = this.getAttribute("announcement-page-link");
+                        getPagesById(announcementPageLink);
+                        return;
+                    });
+                }
+            },
+        },
+        /**/
         { data: 'created_at',       title: 'Registration Date'  },
         { data: 'views_count',       title: 'Views'  },
     ];
@@ -35,6 +57,9 @@
         name: 'AnnouncementMainPage'
     })
     const getPagesById = async (id) => {
+        
+        console.log('getPagesById');
+        return;
        let params = {
 
         }
@@ -47,7 +72,7 @@
     }
     
     onMounted(() => {
-        getPagesById();
+        
 
         /*
             axios.get('api/get_announcement_table')

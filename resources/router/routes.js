@@ -1,5 +1,5 @@
-import  MainPage from '../pages/MainPage.vue';
-import  AnnouncementZoomInstallation from '../pages/AnnouncementZoomInstallation.vue';
+// import  MainPage from '../pages/MainPage.vue';
+// import  AnnouncementZoomInstallation from '../pages/AnnouncementZoomInstallation.vue';
 import  AnnouncementMainPage from '../pages/AnnouncementMainPage.vue';
 
 // import Login from '../js/views/Login.vue'
@@ -9,8 +9,8 @@ console.log('routes');
 export default [
     {
         path: '/',
-        name: 'MainPage',
-        component: MainPage,
+        name: 'AnnouncementMainPage',
+        component: AnnouncementMainPage,
         // children: [
         //     {
         //         path: '/',
@@ -19,18 +19,17 @@ export default [
         //     },
         // ]
     },
-    {
-        path: '/#/AnnouncementZoomInstallation',
-        name: 'AnnouncementZoomInstallation',
-        component: AnnouncementZoomInstallation,
+    // {
+    //     path: '/#/AnnouncementZoomInstallation',
+    //     name: 'AnnouncementZoomInstallation',
+    //     component: AnnouncementZoomInstallation,
         
-    },
-    {
-        path: '/#/AnnouncementMainPage',
-        name: 'AnnouncementMainPage',
-        component: AnnouncementMainPage,
-        
-    },
+    // },
+    // {
+    //     path: '/#/AnnouncementMainPage',
+    //     name: 'AnnouncementMainPage',
+    //     component: AnnouncementMainPage,
+    // },
     
     // {
     //     path: '/panel_template/',

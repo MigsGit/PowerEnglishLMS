@@ -22,7 +22,8 @@ class AnnouncementController extends Controller
             ->addColumn('rawAnnouncementList', function($row){
                 $result = "";
                 $result .= "<center>";
-                $result .= "<a href='#' class='link-primary'> $row->description </a>";
+                // $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' class='link-primary'> $row->description </a>";
+                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' class='link-primary'> $row->description </a>";
                 $result .= "</center>";
                 return $result;
             })
