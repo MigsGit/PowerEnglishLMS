@@ -1,10 +1,15 @@
 <script setup>
-
+import {useAuthStore} from "../js/stores";
 const infoLogin = {
     email : 'migz@gmail.com',
     password : 'pmi12345',
 };
+const storeAuth = useAuthStore();
 
+const sigin = async () => {
+    storeAuth.login(infoLogin);
+
+};
 </script>
 <template>
     <div id="layoutAuthentication">
@@ -16,7 +21,7 @@ const infoLogin = {
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                 <div class="card-body">
-                                    <form class="user">
+                                    <form class="user" @submit.prevent="sigin">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" v-model="infoLogin.email" ref="txtEmail" type="email" placeholder="name@example.com"/>
                                             <label for="inputEmail">Email address</label>
