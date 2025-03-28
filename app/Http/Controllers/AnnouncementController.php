@@ -23,7 +23,7 @@ class AnnouncementController extends Controller
                 $result = "";
                 $result .= "<center>";
                 // $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' class='link-primary'> $row->description </a>";
-                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' class='link-primary'> $row->description </a>";
+                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-page-link='$row->page_link' announcement-api-link='$row->id' class='link-primary'> $row->description </a>";
                 $result .= "</center>";
                 return $result;
             })
@@ -37,10 +37,10 @@ class AnnouncementController extends Controller
             throw $th;
         }
     }
-    public function getPagesById(){
+    public function getPagesById(Request $request){
         date_default_timezone_set('Asia/Manila');
         try {
-            return $announement_table = Announcement::get();
+            return $announement_table = Announcement::where('id',$request->apiLink)->get();
         } catch (\Throwable $th) {
             throw $th;
         }

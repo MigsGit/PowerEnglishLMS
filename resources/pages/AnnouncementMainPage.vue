@@ -40,6 +40,12 @@
     import Navbar from '../layouts/Navbar.vue';
     import Footer from '../layouts/Footer.vue';
     import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
+
+    import useFetchAxios from "../js/composables/useFetch";
+    const {
+        axiosFetchData
+    } = useFetchAxios();
+   
     
     // Create an object map where keys are strings and values are actual objects
     const routeMapping = {
@@ -61,7 +67,9 @@
                     btnAnnoucementPageLink.addEventListener('click', function(event){
                         event.preventDefault();
                         let announcementPageLink = this.getAttribute("announcement-page-link");
-                        pageLink.value = routeMapping[announcementPageLink]; //Convert String to Object
+                        let announcementApiLink = this.getAttribute("announcement-api-link");
+                        //pageLink.value = routeMapping[announcementPageLink]; //Convert String to Object
+                        getPagesById(announcementApiLink,routeMapping[announcementPageLink])
                     });
                 }
             },
@@ -77,5 +85,19 @@
         //console.log(announcementPageLink);
         //return announcementPageLink;
     });
+    
+     const getPagesById = async (apiLink,announcementPageLink) => {
+        
+        let params = {
+           'apiLink' : apiLink
+        }
+        axiosFetchData(params,'api/get_pages_by_id',function(response){
+            let announcement  = response.data[0];
+            pageLink.value = routeMapping[announcement.page_link]; //Convert String to Object
+            announcement.description;
+            announcement.views_count;
+            created_at;
+        });
+    }
     
 </script>
