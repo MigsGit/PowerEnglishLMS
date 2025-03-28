@@ -1,0 +1,1 @@
+[2025-03-27 23:47:50] local.ERROR: View [main] not found. {"exception":"[object] (InvalidArgumentException(code: 0): View [main] not found. at /var/www/html/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:137)
