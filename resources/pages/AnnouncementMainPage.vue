@@ -1,5 +1,4 @@
 <template>
-    <Navbar/>
     <!-- Hero Section -->
     <div class="hero-section text-center" v-if="pageLink == null">
         <div class="container">
@@ -37,8 +36,6 @@
         reactive
     } from 'vue';
     import Router from '../router';
-    import Navbar from '../layouts/Navbar.vue';
-    import Footer from '../layouts/Footer.vue';
     import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
     import useFetchAxios from "../js/composables/useFetch";
     const {
