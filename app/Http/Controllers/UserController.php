@@ -42,9 +42,22 @@ class UserController extends Controller
         }
     }
     public function check_session(Request $request){
-        $var = $request->session()->get('id');
-        $var1 = $request->session()->get('username');
-        $var2 = $request->session()->token();
-        return response()->json(['session_id' => $var,'session_user' => $var1, 'token' => $var2]);
+        try {
+            $var = $request->session()->get('id');
+            $var1 = $request->session()->get('username');
+            $var2 = $request->session()->token();
+            return response()->json(['session_id' => $var,'session_user' => $var1, 'token' => $var2]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
+    public function logout(Request $request){
+        try {
+            $var = $request->session()->forget(['id','username']);
+            return response()->json(['is_success' => 'true']);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+   
 }

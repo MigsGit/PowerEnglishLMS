@@ -17,12 +17,27 @@ export const useAuthStore = defineStore("auth", {
                 console.log(res.data.userData);
                 this.email = res.data.userData.email;
                 this.name = res.data.userData.name;
-                router.push({name: 'Dashboard'});
+                router.push({name: 'AdminDashboard'});
             })
             .catch((err)=>{
                 console.log(err);
             });
-        }
+        },
+        async logout(){
+            await axios.get('/logout').then((res)=> {
+                console.log('useAuthStore: logout');
+                this.$reset();
+                router.push({name: 'Login'});
+                // location.reload();
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
+        },
+        resetStore() {
+            console.log("useAuthStore: resetStore");
+            this.$reset();
+        },
     },
     persist: true,
 });
