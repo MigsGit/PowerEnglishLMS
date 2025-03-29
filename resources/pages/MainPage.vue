@@ -1,26 +1,24 @@
 <template>
-    <Navbar/>
-    <!-- Hero Section -->
-    <div class="hero-section text-center">
-        <div class="container">
-            <h2 class="fw-bold">Power English Notice</h2>
-            <p>We provide you with essential class information, including the latest news and class cancellation schedules.</p>
-            <ul class="list-unstyled text-start mx-auto" style="max-width: 500px;">
-                <li>📌 Guide to website features and program updates</li>
-                <li>📌 Notices on class cancellations and class-related matters</li>
-                <li>📌 Information on price discounts and participation events</li>
-            </ul>
+    <!-- <Topbar/> -->
+    <Topbar/>
+    <!-- Sidebar -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <Sidebar/>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <router-view></router-view>
+            </main>
         </div>
     </div>
-    <!--<AnnouncementZoomInstallation/>-->
-    <TableAnnouncement/>
+    <!-- Footer -->
+    
+    <!-- End of Footer -->
 </template>
 
 <script setup>
-    import Navbar from '../layouts/Navbar.vue';
+    import Topbar from '../layouts/Topbar.vue';
+    import Sidebar from '../layouts/Sidebar.vue';
     import Footer from '../layouts/Footer.vue';
-    import TableAnnouncement from './TableAnnouncement.vue';
-    import AnnouncementZoomInstallation from './AnnouncementZoomInstallation.vue';
-    
-    
 </script>

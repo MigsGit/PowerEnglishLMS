@@ -15,13 +15,12 @@ export const useAuthStore = defineStore("auth", {
         async login(credentials){
             await axios.post('/login',credentials).then((res)=>{
                 console.log(res.data.userData);
-                // this.email = res.data.userData.email;
-                // this.name = res.data.userData.name;
-                router.push({name: '/'});
+                this.email = res.data.userData.email;
+                this.name = res.data.userData.name;
+                router.push({name: 'Dashboard'});
             })
             .catch((err)=>{
                 console.log(err);
-            
             });
         }
     },
