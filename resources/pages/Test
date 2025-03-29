@@ -1,0 +1,12 @@
+<DataTable
+    :columns="columns"
+    class="table table-striped table-responsive mt-2"
+    ajax="/api/get_writing_collection_bulletin"
+    :options="{
+        serverSide: true, //Serverside true will load the network
+        columnDefs:[
+            // {orderable:false,target:[0]}
+        ]
+    }"
+    ref="tableBulletinList"
+/>

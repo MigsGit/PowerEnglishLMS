@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 use Carbon\Carbon;
-use App\Models\Announcement;
 use App\Models\User;
+use App\Models\Announcement;
+use App\Models\WritingCollectionBulletin;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -37,6 +38,35 @@ class AnnouncementController extends Controller
             throw $th;
         }
     }
+    public function getWritingCollectionBulletin(){
+        date_default_timezone_set('Asia/Manila');
+        try {
+            
+            $writing_collection_bulletin_table = WritingCollectionBulletin::get();
+            return DataTables::of($writing_collection_bulletin_table)
+            ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
+                $result = '';
+                return $result .= ++$count;
+            })
+            ->addColumn('rawAnnouncementList', function($row){
+                $api_link = encrypt($row->id);
+                $result = "";
+                $result .= "<center>";
+                $result .= "<a href='#' id='btnAnnoucementPageLink' announcement-api-link='$api_link' class='link-primary'> $row->description </a>";
+                $result .= "</center>";
+                return $result;
+            })
+            ->addColumn('created_at', function ($row){
+                $result = '';
+                return $result .= Carbon::parse($row->created_at)->format('Y-m-d');
+            })
+            ->rawColumns(['rawAnnouncementList','getNumberList'])
+            ->make(true);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    
     public function getPagesById(Request $request){
         date_default_timezone_set('Asia/Manila');
         try {
