@@ -20,3 +20,4 @@ use App\Http\Controllers\UserController;
 
 Route::view('/', 'main');
 Route::post('login', [UserController::class, 'login'])->name('login');
+Route::get('check_session',[UserController::class, 'check_session']);
