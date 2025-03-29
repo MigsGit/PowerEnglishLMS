@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ use App\Http\Controllers\AnnouncementController;
 // });
 Route::get('get_announcement_table', [AnnouncementController::class, 'getAnnouncementTable'])->name('announcement.table');
 Route::get('get_pages_by_id', [AnnouncementController::class, 'getPagesById'])->name('announcement.table');
+
