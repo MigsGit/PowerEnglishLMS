@@ -1,17 +1,24 @@
 
 import  MainPage from '../pages/MainPage.vue';
+import  CommunityMainPage from '../pages/CommunityMainPage.vue';
 import  AnnouncementMainPage from '../pages/AnnouncementMainPage.vue';
+import  EducCenterNews from '../pages/EducCenterNews.vue';
 import  Login from '../pages/Login.vue';
 import  AdminPanel from '../pages/AdminPanel.vue';
 import  AdminDashboard from '../pages/AdminDashboard.vue';
 
 console.log('routes');
 
-export default [
+export default [ 
     {
         path: '/',
         name: 'MainPage',
         component: MainPage,
+    },
+    {
+        path: '/community/',
+        name: 'CommunityMainPage',
+        component: CommunityMainPage,
         children: [
             {
                 path: 'notice',
@@ -19,13 +26,18 @@ export default [
                 component: AnnouncementMainPage,
             },
             {
-                path: 'login',
-                name: 'Login',
-                component: Login,
-            },
+                path: 'filipino-education-center',
+                name: 'EducCenterNews',
+                component: EducCenterNews,
+            }
+            
         ]
     },
-    
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+    },
     {
         path: '/me/',
         name: 'AdminPanel',

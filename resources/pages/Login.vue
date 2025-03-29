@@ -1,17 +1,5 @@
-<script setup>
-import {useAuthStore} from "../js/stores";
-const infoLogin = {
-    email : 'migz@gmail.com',
-    password : 'pmi12345',
-};
-const storeAuth = useAuthStore();
-
-const sigin = async () => {
-    storeAuth.login(infoLogin);
-
-};
-</script>
 <template>
+    <Navbar/>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -54,4 +42,19 @@ const sigin = async () => {
         </div>
     </div>
 </template>
+<script setup>
+    import Navbar from '../layouts/Navbar.vue';
+    import Footer from '../layouts/Footer.vue';
+    import {useAuthStore} from "../js/stores";
+    const infoLogin = {
+        email : 'migz@gmail.com',
+        password : 'pmi12345',
+    };
+    const storeAuth = useAuthStore();
+
+    const sigin = async () => {
+        storeAuth.login(infoLogin);
+
+    };
+</script>
 

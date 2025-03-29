@@ -32,11 +32,11 @@
                             Community
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Announement</a></li>
-                            <li><a class="dropdown-item" href="#">Education Center News</a></li>
-                            <li><a class="dropdown-item" href="#">Thank you teacher</a></li>
-                            <li><a class="dropdown-item" href="#">Writing Correction Bulletin Board</a></li>
-                            <li><a class="dropdown-item" href="#">Table</a></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'AnnouncementMainPage' }">Announcement</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'EducCenterNews' }">Education Center News</router-link></li>
+                            <li><a class="dropdown-item">Thank you teacher</a></li>
+                            <li><a class="dropdown-item">Writing Correction Bulletin Board</a></li>
+                            <li><a class="dropdown-item">Table</a></li>
                              
                         </ul>
                     </li>

@@ -1,6 +1,6 @@
 <template>
     <!-- Hero Section -->
-    <div class="hero-section text-center" v-if="pageLink == null">
+    <div class="hero-section text-center">
         <div class="container">
             <h2 class="fw-bold">Power English Notice</h2>
             <p>We provide you with essential class information, including the latest news and class cancellation schedules.</p>
