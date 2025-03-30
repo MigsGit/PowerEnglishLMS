@@ -1,16 +1,24 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 use DataTables;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Announcement;
 use App\Models\WritingCollectionBulletin;
-use Illuminate\Http\Request;
+use App\Interfaces\CommonInterface;
 
-class AnnouncementController extends Controller
+class CommunityController extends Controller
 {
+    protected $common_interface;
+    public function __construct(
+        CommonInterface $common_interface
+    ) {
+        $this->common_interface = $common_interface;
+    }
+
     public function getAnnouncementTable(){
         date_default_timezone_set('Asia/Manila');
         try {
@@ -88,7 +96,7 @@ class AnnouncementController extends Controller
         date_default_timezone_set('Asia/Manila');
         try {
             $api_link = decrypt($request->apiLink);
-            return CommonService::getPagesById(Announcement::class,$api_link);
+            return $this->common_interface->getPagesById(Announcement::class,$api_link);
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
@@ -98,7 +106,7 @@ class AnnouncementController extends Controller
         date_default_timezone_set('Asia/Manila');
         try {
             $api_link = decrypt($request->apiLink);
-            return CommonService::getPagesById(WritingCollectionBulletin::class,$api_link);
+            return $this->common_interface->getPagesById(WritingCollectionBulletin::class,$api_link);
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
