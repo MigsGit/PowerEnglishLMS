@@ -84,7 +84,6 @@ class AnnouncementController extends Controller
             throw $th;
         }
     }
-
     public function getPagesById(Request $request){
         date_default_timezone_set('Asia/Manila');
         try {

@@ -17,8 +17,25 @@ import  Search from '../pages/leveltest/Search.vue';
 import  Schedule from '../pages/leveltest/LevelTest.vue';
 import  Login from '../pages/Login.vue';
 import  AdminPanel from '../pages/AdminPanel.vue';
-import  AdminDashboard from '../pages/admin/AdminDashboard.vue';
+import  AdminDashboard from '../pages/AdminDashboard.vue';
 
+function checkIfSessionExist(to, from, next) {
+    axios.get('check_session')
+    .then((response) => {
+        let session_user = response.data.session_user
+        if(session_user != null){
+            next();
+        }else{
+            next({
+                path: '/login',
+                replace: true
+            });
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
 
 
 export default [
@@ -91,11 +108,13 @@ export default [
     {
         path: '/login',
         name: 'Login',
+        // beforeEnter: checkIfSessionExist,
         component: Login,
     },
     {
         path: '/me/',
         name: 'AdminPanel',
+        beforeEnter: checkIfSessionExist,
         component: AdminPanel,
         children: [
             {
