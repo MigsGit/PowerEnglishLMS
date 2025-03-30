@@ -32,7 +32,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                    <div class="small"><a data-bs-toggle="modal" data-bs-target="#modalUserInfo">Need an account? Sign up!</a></div>
                                 </div>
                             </div>
                         </div>
@@ -41,11 +41,51 @@
             </main>
         </div>
     </div>
+
+    <!--
+        MODAL
+     -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalUserInfo" ref="modalUserInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post"  @submit.prevent="fnSaveUserInfo()" ref="formUser">
+                    <div class="modal-body">
+                        <input type="hidden" ref="data_id" v-model="frmUserInfo.data_id" class="form-control mb-3" placeholder="ID">
+                        <input type="text" ref="full_name" v-model="frmUserInfo.full_name" class="form-control mb-3" placeholder="Full Name">
+                        <input type="text" ref="email" v-model="frmUserInfo.email" class="form-control mb-3" placeholder="Email">
+                        <!-- <input type="text" ref="password" v-model="frmUserInfo.password" class="form-control mb-3" placeholder="Password"> -->
+                        <!-- <input type="text" ref="confirm_password" v-model="frmUserInfo.confirm_password" class="form-control mb-3" placeholder="Confirm Password"> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="Submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>
 <script setup>
+    import {ref, onMounted} from 'vue';
     import Navbar from '../layouts/Navbar.vue';
     import Footer from '../layouts/Footer.vue';
     import {useAuthStore} from "../js/stores";
+
+    const getUserInfo = ref(null)
+    const modalUserInfo = ref(null)
+    const frmUserInfo = ref({})
+    const formUser = ref(null);
+    const full_name = ref(null)
+    const email = ref(null)
+    const tableUserInfo = ref(null)
+
+    let objModalUserInfo = null;
+
     const infoLogin = {
         email : 'migz@gmail.com',
         password : 'pmi12345',
@@ -56,5 +96,67 @@
         storeAuth.login(infoLogin);
 
     };
+    // objModalUserInfo.show();
+    async function fnSaveUserInfo(event){
+        try {
+            // event.preventDefault();
+            let response = await axios.post('save_user_info',frmUserInfo.value)
+            // console.log(response)
+            objModalUserInfo.hide();
+            Swal.fire({
+                    icon: "success",
+                    title: "Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+            });
+
+        }catch (err) {
+            let errorStatus = err.response.status
+            let errorMessage = err.response.data.errors
+            console.log('dasdasdasdasd',err);
+            if(errorStatus === 422){
+                if(frmUserInfo.value.full_name){
+                    full_name.value.classList.remove('is-invalid')
+                    full_name.value.title = "";
+                }else{
+                    full_name.value.classList.add('is-invalid')
+                    full_name.value.title = errorMessage.full_name[0];
+                }
+                if(frmUserInfo.value.email){
+                    email.value.classList.remove('is-invalid')
+                    email.value.title = "";
+                }else{
+                    email.value.classList.add('is-invalid')
+                    email.value.title = errorMessage.email[0];
+                }
+            }else{
+                alert('Invalid Input ! ')
+            }
+        }
+    }
+    onMounted(() => {
+        objModalUserInfo = new Modal(modalUserInfo.value);
+        console.log(objModalUserInfo);
+
+        modalUserInfo.value.addEventListener('hidden.bs.modal',function (event){
+            // frmUserInfo.value.full_name = ''
+            // console.log(frmUserInfo.value.full_name = '');
+            frmUserInfo.value.data_id = ''
+            frmUserInfo.value.full_name = ''
+            frmUserInfo.value.email = ''
+            full_name.value.classList.remove('is-invalid')
+            full_name.value.title = "";
+            email.value.classList.remove('is-invalid')
+            email.value.title = "";
+            /*
+                <input type="hidden" ref="data_id" v-model="frmUserInfo.data_id" class="form-control mb-3" placeholder="ID">
+                <input type="text" ref="full_name" v-model="frmUserInfo.full_name" class="form-control mb-3" placeholder="Full Name">
+                <input type="text" ref="email" v-model="frmUserInfo.email" class="form-control mb-3" placeholder="Email">
+            */
+
+        })
+    });
+
+
 </script>
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRegisterRequest;
 
 
 
@@ -41,6 +43,23 @@ class UserController extends Controller
             throw $th;
         }
     }
+    public function saveUserInfo(UserRegisterRequest $request){
+        date_default_timezone_set('Asia/Manila');
+        DB::beginTransaction();
+        try {
+             User::insert([
+                'name' => $request->full_name,
+                'email' => $request->email,
+                'password' => Hash::make('we12345'),
+                'created_at' => date('Y-m-d H:m:s'),
+            ]);
+            DB::commit();
+            return response()->json(['is_success' => 'true']);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            throw $th;
+        }
+    }
     public function check_session(Request $request){
         try {
             $var = $request->session()->get('id');
@@ -59,5 +78,5 @@ class UserController extends Controller
             //throw $th;
         }
     }
-   
+
 }

@@ -22,9 +22,8 @@ use App\Http\Controllers\UserController;
 Route::get('get_announcement_table', [CommunityController::class, 'getAnnouncementTable'])->name('community.announcement_table');
 Route::get('get_pages_by_id', [CommunityController::class, 'getPagesById'])->name('community.get_pages_by_id');
 Route::get('get_bulletin_pages_by_id', [CommunityController::class, 'getBulletinPagesById'])->name('community.get_bulletin_pages_by_id');
-
-
 Route::get('get_writing_collection_bulletin_table', [CommunityController::class, 'getWritingCollectionBulletin'])->name('community.bulletin_table');
+
 
 
 
