@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('is_release')->nullable();
             $table->string('status')->nullable();
             $table->string('views_count')->nullable();
+            $table->date('registered_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

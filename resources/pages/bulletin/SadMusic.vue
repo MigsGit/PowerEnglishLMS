@@ -3,7 +3,7 @@
         <!-- Announcement Content -->
         <div class="announcement-body p-4 border rounded shadow-sm bg-white">
             <!-- Announcement Header Table -->
-            <AnnouncementHeader :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions"/>
+            <CommunityHeader :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions"/>
             <p>Bulletin Hello Power English members! Bulletin</p>
             <p>Power English is a program that will give you confidence in speaking English.</p>
 
@@ -51,7 +51,7 @@
 </template>
 <script setup>
     import {defineProps} from 'vue'
-    import AnnouncementHeader from '../AnnouncementHeader.vue';
+    import CommunityHeader from '../CommunityHeader.vue';
     const props = defineProps({
         createdAt: {
             type:'string',

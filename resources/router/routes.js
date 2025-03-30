@@ -1,7 +1,7 @@
 
 import  MainPage from '../pages/MainPage.vue';
 import  CommunityMainPage from '../pages/CommunityMainPage.vue';
-import  AnnouncementMainPage from '../pages/AnnouncementMainPage.vue';
+import  AnnouncementMainPage from '../pages/announcement/AnnouncementMainPage.vue';
 import  EducCenterNews from '../pages/EducCenterNews.vue';
 import  ThankyouTeacher from '../pages/ThankyouTeacher.vue';
 import  BulletinMainPage from '../pages/bulletin/BulletinMainPage.vue';

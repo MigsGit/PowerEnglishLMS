@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('page_link')->nullable();
             $table->string('views_count')->nullable();
+            $table->date('registered_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

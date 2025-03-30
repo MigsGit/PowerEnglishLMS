@@ -76,7 +76,7 @@
         { data: 'author',       title: 'Author' },
         { data: 'rawIsRelease',   title: 'Release' },
         { data: 'status',       title: 'Situation' },
-        { data: 'created_at',       title: 'Registration Date'  },
+        { data: 'registered_date',       title: 'Registration Date'  },
         { data: 'views_count',       title: 'Views'  },
     ];
 
@@ -94,7 +94,7 @@
             pageLink.value = routeMapping[pages.page_link]; //Convert String to Object
             descriptions.value = pages.description;
             viewsCount.value = pages.views_count;
-            createdAt.value = pages.created_at;
+            createdAt.value = pages.registered_date;
             tableBulletinList.value.dt.draw();
         });
     }
