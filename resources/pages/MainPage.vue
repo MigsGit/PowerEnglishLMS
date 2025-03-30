@@ -14,6 +14,10 @@
     </div>
 </template>
 <script setup>
+    import Router from '../router';
     import Navbar from '../layouts/Navbar.vue';
     import Footer from '../layouts/Footer.vue';
+
+    Router.push({name: 'AnnouncementMainPage'});
+
 </script>
