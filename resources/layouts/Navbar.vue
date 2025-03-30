@@ -12,8 +12,8 @@
                             Level Test
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Apply for level test</a></li>
-                            <li><a class="dropdown-item" href="#">Check test results</a></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'Schedule' }">Apply for level test</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'Search' }">Check test results</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#">Curriculum</a></li>
@@ -34,10 +34,9 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><router-link class="dropdown-item" :to="{ name: 'AnnouncementMainPage' }">Announcement</router-link></li>
                             <li><router-link class="dropdown-item" :to="{ name: 'EducCenterNews' }">Education Center News</router-link></li>
-                            <li><a class="dropdown-item">Thank you teacher</a></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'ThankyouTeacher' }">Thank you teacher</router-link></li>
                             <li><router-link class="dropdown-item" :to="{ name: 'BulletinMainPage' }">Writing Correction Bulletin Board</router-link></li>
-                            <li><a class="dropdown-item">Table</a></li>
-                             
+                            <li><router-link class="dropdown-item" :to="{ name: 'CourseReviewMainPage' }">Course Review</router-link></li>
                         </ul>
                     </li>
                      <li class="nav-item dropdown">
