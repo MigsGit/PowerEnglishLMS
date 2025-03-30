@@ -12,7 +12,7 @@
             </ul>
         </div>
     </div>
-    <component :is="selectedRouteComponent" :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions"/>
+    <CommunityMainMessage  v-if="descriptions != null" :createdAt="createdAt" :viewsCount="viewsCount" :descriptions="descriptions" :message="message"/>
    <!-- Notices Table -->
     <div class="container notice-list overflow-auto">
         <DataTable
@@ -36,23 +36,20 @@
         computed, reactive
     } from 'vue';
     import Router from '../../router';
-    import SadMusic from './SadMusic.vue';
+    import CommunityMainMessage from '../CommunityMainMessage.vue';
     import useFetchAxios from "../../js/composables/useFetch";
 
     const {
         axiosFetchData
     } = useFetchAxios();
 
-    const pageLink = ref();
-
-    // Create an object map where keys are strings and values are actual objects
-    const routeMapping = {
-        SadMusic,
-    };
     const tableBulletinList = ref();
     const createdAt = ref(null);
     const descriptions = ref(null);
     const viewsCount = ref(null);
+    const message = ref(null);
+
+
 
     const columns =[
         { data: 'rawNumberList',    title: 'Number' },
@@ -89,12 +86,11 @@
            'apiLink' : apiLink
         }
         axiosFetchData(params,'api/get_bulletin_pages_by_id',function(response){
-
             let pages  = response.data.pages_table[0];
-            pageLink.value = routeMapping[pages.page_link]; //Convert String to Object
             descriptions.value = pages.description;
             viewsCount.value = pages.views_count;
             createdAt.value = pages.registered_date;
+            message.value = pages.message;
             tableBulletinList.value.dt.draw();
         });
     }
