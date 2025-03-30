@@ -20,7 +20,7 @@ export const useAuthStore = defineStore("auth", {
                 router.push({name: 'AdminDashboard'});
             })
             .catch((err)=>{
-                console.log(err);
+                    alert('Invalid Input ! ')
             });
         },
         async logout(){

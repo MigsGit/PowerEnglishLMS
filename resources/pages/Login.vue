@@ -55,11 +55,16 @@
                 </div>
                 <form method="post"  @submit.prevent="fnSaveUserInfo()" ref="formUser">
                     <div class="modal-body">
+
                         <input type="hidden" ref="data_id" v-model="frmUserInfo.data_id" class="form-control mb-3" placeholder="ID">
-                        <input type="text" ref="full_name" v-model="frmUserInfo.full_name" class="form-control mb-3" placeholder="Full Name">
+                        <input  :class="{ 'is-invalid': formErrors.full_name }" type="text" ref="full_name" v-model="frmUserInfo.full_name" class="form-control mb-3" placeholder="Full Name">
+                        <div v-if="formErrors.full_name" class="invalid-feedback">
+                            {{ formErrors.full_name[0] }}
+                        </div>
                         <input type="text" ref="email" v-model="frmUserInfo.email" class="form-control mb-3" placeholder="Email">
-                        <!-- <input type="text" ref="password" v-model="frmUserInfo.password" class="form-control mb-3" placeholder="Password"> -->
-                        <!-- <input type="text" ref="confirm_password" v-model="frmUserInfo.confirm_password" class="form-control mb-3" placeholder="Confirm Password"> -->
+                        <div v-if="formErrors.email" class="invalid-feedback">
+                            {{ formErrors.email[0] }}
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -76,13 +81,12 @@
     import Footer from '../layouts/Footer.vue';
     import {useAuthStore} from "../js/stores";
 
-    const getUserInfo = ref(null)
     const modalUserInfo = ref(null)
     const frmUserInfo = ref({})
     const formUser = ref(null);
     const full_name = ref(null)
     const email = ref(null)
-    const tableUserInfo = ref(null)
+    const formErrors = ref({});
 
     let objModalUserInfo = null;
 
@@ -99,9 +103,7 @@
     // objModalUserInfo.show();
     async function fnSaveUserInfo(event){
         try {
-            // event.preventDefault();
             let response = await axios.post('save_user_info',frmUserInfo.value)
-            // console.log(response)
             objModalUserInfo.hide();
             Swal.fire({
                     icon: "success",
@@ -111,27 +113,33 @@
             });
 
         }catch (err) {
-            let errorStatus = err.response.status
-            let errorMessage = err.response.data.errors
-            console.log('dasdasdasdasd',err);
-            if(errorStatus === 422){
-                if(frmUserInfo.value.full_name){
-                    full_name.value.classList.remove('is-invalid')
-                    full_name.value.title = "";
-                }else{
-                    full_name.value.classList.add('is-invalid')
-                    full_name.value.title = errorMessage.full_name[0];
-                }
-                if(frmUserInfo.value.email){
-                    email.value.classList.remove('is-invalid')
-                    email.value.title = "";
-                }else{
-                    email.value.classList.add('is-invalid')
-                    email.value.title = errorMessage.email[0];
-                }
-            }else{
-                alert('Invalid Input ! ')
+            if (err.response && err.response.status === 422) {
+                // Extract validation errors from Laravel response
+                formErrors.value = err.response.data.errors;
+            } else {
+                // Handle other errors
+                alert("Invalid Input!");
             }
+            // let errorStatus = err.response.status
+            // let errorMessage = err.response.data.errors
+            // if(errorStatus === 422){
+            //     if(frmUserInfo.value.full_name){
+            //         full_name.value.classList.remove('is-invalid')
+            //         full_name.value.title = "";
+            //     }else{
+            //         full_name.value.classList.add('is-invalid')
+            //         full_name.value.title = errorMessage.full_name[0];
+            //     }
+            //     if(frmUserInfo.value.email){
+            //         email.value.classList.remove('is-invalid')
+            //         email.value.title = "";
+            //     }else{
+            //         email.value.classList.add('is-invalid')
+            //         email.value.title = errorMessage.email[0];
+            //     }
+            // }else{
+            //     alert('Invalid Input ! ')
+            // }
         }
     }
     onMounted(() => {
