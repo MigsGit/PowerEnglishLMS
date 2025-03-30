@@ -7,6 +7,11 @@ import  ThankyouTeacher from '../pages/community/ThankyouTeacher.vue';
 import  BulletinMainPage from '../pages/bulletin/BulletinMainPage.vue';
 import  CourseReviewMainPage from '../pages/community/coursereview/CourseReviewMainPage.vue';
 
+import  Curriculum from '../pages/curriculum/Curriculum.vue';
+import  TuitionFee from '../pages/courseregistration/TuitionFee.vue';
+
+
+
 import  LevelTestMainPage from '../pages/LevelTestMainPage.vue';
 import  Search from '../pages/leveltest/Search.vue';
 import  Schedule from '../pages/leveltest/LevelTest.vue';
@@ -72,6 +77,17 @@ export default [
             },
         ]
     },
+    {
+        path: '/curriculum',
+        name: 'Curriculum',
+        component: Curriculum,
+    },
+    {
+        path: '/tuition-fee',
+        name: 'TuitionFee',
+        component: TuitionFee,
+    },
+
     {
         path: '/login',
         name: 'Login',

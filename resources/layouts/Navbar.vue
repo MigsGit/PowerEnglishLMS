@@ -16,7 +16,7 @@
                             <li><router-link class="dropdown-item" :to="{ name: 'Search' }">Check test results</router-link></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Curriculum</a></li>
+                    <li class="nav-item"><router-link class="nav-link" :to="{ name: 'Curriculum' }">Curriculum</router-link></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Teaching Method
