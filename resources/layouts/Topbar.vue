@@ -1,13 +1,14 @@
 <template>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <span class="navbar-brand ps-3" >Power English </span>
+        <span class="navbar-brand ps-3" >
+            <img src="../content/wise_education_logo.jpg" alt="" width="40" class="logo-icon center-block">   Power EnglishPower English
+        </span>
         <!-- Sidebar Toggle-->
-        
+
         <a id="sidebarToggle" style="cursor: pointer;"><i class="fas fa-bars"></i></a>
         <!-- Navbar Search-->
-        
-     
+
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
