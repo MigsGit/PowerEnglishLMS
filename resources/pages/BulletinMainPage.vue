@@ -38,11 +38,11 @@
     import Router from '../router';
     import BulletinSample from './BulletinSample.vue';
     import useFetchAxios from "../js/composables/useFetch";
-    
+
     const {
         axiosFetchData
     } = useFetchAxios();
-    
+
     const pageLink = ref();
 
     // Create an object map where keys are strings and values are actual objects
@@ -63,7 +63,7 @@
             searchable: false,
             createdCell(cell) {
                 let btnAnnoucementPageLink = cell.querySelector("#btnAnnoucementPageLink")
-               
+
                 if((btnAnnoucementPageLink !== null)){
                     btnAnnoucementPageLink.addEventListener('click', function(event){
                         event.preventDefault();
@@ -76,10 +76,23 @@
         { data: 'created_at',       title: 'Registration Date'  },
         { data: 'views_count',       title: 'Views'  },
     ];
-   
+
     // Compute which route component to use
     const selectedRouteComponent = computed(() => {
         return pageLink.value;
     });
+    const getPagesById = async (apiLink) => {
+        let params = {
+           'apiLink' : apiLink
+        }
+        axiosFetchData(params,'api/get_bulletin_pages_by_id',function(response){
+            let announcement  = response.data.announement_table[0];
+            pageLink.value = routeMapping[announcement.page_link]; //Convert String to Object
+            descriptions.value = announcement.description;
+            viewsCount.value = announcement.views_count;
+            createdAt.value = announcement.created_at;
+            tableAnnouncementList.value.dt.draw();
+        });
+    }
 
 </script>

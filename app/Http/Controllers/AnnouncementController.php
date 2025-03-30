@@ -41,7 +41,7 @@ class AnnouncementController extends Controller
     public function getWritingCollectionBulletin(){
         date_default_timezone_set('Asia/Manila');
         try {
-            
+
             $writing_collection_bulletin_table = WritingCollectionBulletin::get();
             return DataTables::of($writing_collection_bulletin_table)
             ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
@@ -66,27 +66,47 @@ class AnnouncementController extends Controller
             throw $th;
         }
     }
-    
+
     public function getPagesById(Request $request){
         date_default_timezone_set('Asia/Manila');
         try {
-            
-            DB::beginTransaction();
             $api_link = decrypt($request->apiLink);
-  
-            $previous_announement_table = Announcement::where('id',$api_link)->get(['views_count']);
-            $total_views_count =   $previous_announement_table[0]->views_count +1 ;
-            
-            Announcement::where('id',$api_link)
-            ->update(['views_count'=>$total_views_count]);
-            
-            $lastest_announement_table = Announcement::where('id',$api_link)->get();
-            DB::commit();
-            return response()->json(['announement_table'=>$lastest_announement_table]);
+            return CommonService::getPagesById(Announcement::class,$api_link);
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
         }
     }
-    
+    public function getBulletinPagesById(Request $request){
+        date_default_timezone_set('Asia/Manila');
+        try {
+            $api_link = decrypt($request->apiLink);
+            return CommonService::getPagesById(WritingCollectionBulletin::class,$api_link);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+    }
+}
+class CommonService{
+    public static function getPagesById($model,$api_link){
+        date_default_timezone_set('Asia/Manila');
+        try {
+
+            DB::beginTransaction();
+
+            $previous_pages_table = $model::where('id',$api_link)->get(['views_count']);
+            $total_views_count =   $previous_pages_table[0]->views_count +1 ;
+
+            $model::where('id',$api_link)
+            ->update(['views_count'=>$total_views_count]);
+
+            $latest_pages_table = $model::where('id',$api_link)->get();
+            DB::commit();
+            return response()->json(['pages_table'=>$latest_pages_table]);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+    }
 }

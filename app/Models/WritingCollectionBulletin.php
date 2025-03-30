@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class WritingCollectionBulletin extends Model
 {
-    use HasFactory;
+    protected $hidden = [
+        'id',
+        'updated_at',
+        'deleted_at',
+    ];
 }

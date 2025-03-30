@@ -35,7 +35,7 @@
                             <li><router-link class="dropdown-item" :to="{ name: 'AnnouncementMainPage' }">Announcement</router-link></li>
                             <li><router-link class="dropdown-item" :to="{ name: 'EducCenterNews' }">Education Center News</router-link></li>
                             <li><a class="dropdown-item">Thank you teacher</a></li>
-                            <li><a class="dropdown-item">Writing Correction Bulletin Board</a></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'BulletinMainPage' }">Writing Correction Bulletin Board</router-link></li>
                             <li><a class="dropdown-item">Table</a></li>
                              
                         </ul>
