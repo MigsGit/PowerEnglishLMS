@@ -44,8 +44,8 @@
                             Course Registration
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Tuition fee confirmation and new application</a></li>
-                            <li><a class="dropdown-item" href="#">Re-enrollment application</a></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'TuitionFee' }">Tuition fee confirmation and new application</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'Login' }">Re-enrollment application</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item">
