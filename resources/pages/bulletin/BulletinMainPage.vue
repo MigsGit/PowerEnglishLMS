@@ -36,7 +36,7 @@
         computed, reactive
     } from 'vue';
     import Router from '../../router';
-    import BulletinSample from './BulletinSample.vue';
+    import SadMusic from './SadMusic.vue';
     import useFetchAxios from "../../js/composables/useFetch";
 
     const {
@@ -47,7 +47,7 @@
 
     // Create an object map where keys are strings and values are actual objects
     const routeMapping = {
-        BulletinSample,
+        SadMusic,
     };
     const tableBulletinList = ref();
     const createdAt = ref(null);
@@ -57,7 +57,7 @@
     const columns =[
         { data: 'rawNumberList',    title: 'Number' },
         {
-            data: 'rawAnnouncementList',
+            data: 'rawPagesList',
             title: 'Title',
             orderable: false,
             searchable: false,
@@ -67,14 +67,14 @@
                 if((btnAnnoucementPageLink !== null)){
                     btnAnnoucementPageLink.addEventListener('click', function(event){
                         event.preventDefault();
-                        let announcementApiLink = this.getAttribute("announcement-api-link");
+                        let announcementApiLink = this.getAttribute("api-link");
                         getPagesById(announcementApiLink)
                     });
                 }
             },
         },
         { data: 'author',       title: 'Author' },
-        { data: 'is_release',   title: 'Release' },
+        { data: 'rawIsRelease',   title: 'Release' },
         { data: 'status',       title: 'Situation' },
         { data: 'created_at',       title: 'Registration Date'  },
         { data: 'views_count',       title: 'Views'  },
@@ -89,12 +89,13 @@
            'apiLink' : apiLink
         }
         axiosFetchData(params,'api/get_bulletin_pages_by_id',function(response){
-            let announcement  = response.data.announement_table[0];
-            pageLink.value = routeMapping[announcement.page_link]; //Convert String to Object
-            descriptions.value = announcement.description;
-            viewsCount.value = announcement.views_count;
-            createdAt.value = announcement.created_at;
-            tableAnnouncementList.value.dt.draw();
+
+            let pages  = response.data.pages_table[0];
+            pageLink.value = routeMapping[pages.page_link]; //Convert String to Object
+            descriptions.value = pages.description;
+            viewsCount.value = pages.views_count;
+            createdAt.value = pages.created_at;
+            tableBulletinList.value.dt.draw();
         });
     }
 

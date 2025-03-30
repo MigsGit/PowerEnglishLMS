@@ -4,7 +4,7 @@ import  CommunityMainPage from '../pages/CommunityMainPage.vue';
 import  AnnouncementMainPage from '../pages/AnnouncementMainPage.vue';
 import  EducCenterNews from '../pages/EducCenterNews.vue';
 import  ThankyouTeacher from '../pages/ThankyouTeacher.vue';
-import  BulletinMainPage from '../pages/BulletinMainPage.vue';
+import  BulletinMainPage from '../pages/bulletin/BulletinMainPage.vue';
 
 import  Login from '../pages/Login.vue';
 import  AdminPanel from '../pages/AdminPanel.vue';
@@ -12,7 +12,7 @@ import  AdminDashboard from '../pages/AdminDashboard.vue';
 
 
 
-export default [ 
+export default [
     {
         path: '/',
         name: 'MainPage',
@@ -43,7 +43,7 @@ export default [
                 name: 'BulletinMainPage',
                 component: BulletinMainPage,
             },
-            
+
         ]
     },
     {
