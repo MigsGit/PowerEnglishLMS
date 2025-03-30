@@ -108,7 +108,6 @@ export default [
     {
         path: '/login',
         name: 'Login',
-        // beforeEnter: checkIfSessionExist,
         component: Login,
     },
     {
