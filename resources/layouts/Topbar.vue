@@ -2,7 +2,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <span class="navbar-brand ps-3" >
-            <img src="../content/wise_education_logo.jpg" alt="" width="40" class="logo-icon center-block">   Power EnglishPower English
+            <img src="../content/wise_education_logo.png" alt="" width="40" class="logo-icon center-block">   Power English
         </span>
         <!-- Sidebar Toggle-->
 

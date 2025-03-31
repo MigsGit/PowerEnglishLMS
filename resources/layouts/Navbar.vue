@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
-                <img src="../content/wise_education_logo.jpg" alt="" width="40" class="logo-icon center-block">   Power English
+                <img src="../content/wise_education_logo.png" alt="" width="40" class="logo-icon center-block">   Power English
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
