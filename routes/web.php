@@ -15,9 +15,11 @@ use App\Http\Controllers\UserController;
 */
 
 Route::view('/', 'main');
+Route::controller(UserController::class)->group(function () {
+    Route::post('login', 'login')->name('login');
+    Route::post('save_user_info', 'saveUserInfo')->name('save_user_info');
+    Route::get('check_session','check_session');
+    Route::get('logout','logout');
+});
 
-Route::post('login', [UserController::class, 'login'])->name('login');
-Route::post('save_user_info', [UserController::class, 'saveUserInfo'])->name('save_user_info');
-Route::get('check_session',[UserController::class, 'check_session']);
-Route::get('logout',[UserController::class, 'logout']);
 
