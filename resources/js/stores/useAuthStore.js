@@ -25,7 +25,7 @@ export const useAuthStore = defineStore("auth", {
                     // Capture Laravel validation errors in Pinia
                     this.errorMessages = err.response.data.errors;
                 } else {
-                    alert("Invalid Input!");
+                    alert("Invalid Username or Password!");
                 }
             });
         },

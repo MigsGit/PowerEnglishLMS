@@ -115,33 +115,13 @@
             });
 
         }catch (err) {
-            if (err.response && err.response.status === 422) {
+            if (err.response.status === 422) {
                 // Extract validation errors from Laravel response
                 formErrors.value = err.response.data.errors;
             } else {
                 // Handle other errors
                 alert("Invalid Input!");
             }
-            // let errorStatus = err.response.status
-            // let errorMessage = err.response.data.errors
-            // if(errorStatus === 422){
-            //     if(frmUserInfo.value.full_name){
-            //         full_name.value.classList.remove('is-invalid')
-            //         full_name.value.title = "";
-            //     }else{
-            //         full_name.value.classList.add('is-invalid')
-            //         full_name.value.title = errorMessage.full_name[0];
-            //     }
-            //     if(frmUserInfo.value.email){
-            //         email.value.classList.remove('is-invalid')
-            //         email.value.title = "";
-            //     }else{
-            //         email.value.classList.add('is-invalid')
-            //         email.value.title = errorMessage.email[0];
-            //     }
-            // }else{
-            //     alert('Invalid Input ! ')
-            // }
         }
     }
     onMounted(() => {

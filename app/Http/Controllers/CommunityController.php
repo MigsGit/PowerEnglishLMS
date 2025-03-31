@@ -33,9 +33,11 @@ class CommunityController extends Controller
                 'registered_date'
             ]);
 
-            $announement_table_collection = Cache::remember('announcement', now()->addMinutes(10), function ($announement_table) {
-                return AnnouncementResource::collection($announement_table);
-            });
+            // $announement_table_collection = Cache::remember('announcement', now()->addMinutes(10), function ($announement_table) {
+                // return AnnouncementResource::collection($announement_table);
+            // });
+           $announement_table_collection = AnnouncementResource::collection($announement_table);
+
             return DataTables::of($announement_table_collection)
             ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
                 $result = '';

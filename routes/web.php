@@ -23,3 +23,10 @@ Route::controller(UserController::class)->group(function () {
 });
 
 
+Route::get('run_migration',function(){
+    Artisan::call('optimize:clear');
+    Artisan::call('migrate');
+
+    return "Success Migration";
+});
+
