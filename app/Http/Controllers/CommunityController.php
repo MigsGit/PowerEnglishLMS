@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Interfaces\CommonInterface;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 use App\Models\WritingCollectionBulletin;
 use App\Http\Resources\AnnouncementResource;
 use App\Http\Resources\WritingCollectionBulletinResource;
@@ -31,7 +32,10 @@ class CommunityController extends Controller
                 'views_count',
                 'registered_date'
             ]);
-            $announement_table_collection = AnnouncementResource::collection($announement_table);
+
+            $announement_table_collection = Cache::remember('announcement', now()->addMinutes(10), function ($announement_table) {
+                return AnnouncementResource::collection($announement_table);
+            });
             return DataTables::of($announement_table_collection)
             ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
                 $result = '';
@@ -64,6 +68,7 @@ class CommunityController extends Controller
                 'status',
                 'registered_date'
             ]);
+
             $writing_collection_bulletin_table_collection = WritingCollectionBulletinResource::collection($writing_collection_bulletin_table);
 
             return DataTables::of($writing_collection_bulletin_table_collection)
