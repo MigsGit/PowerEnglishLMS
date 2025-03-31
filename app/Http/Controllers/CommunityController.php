@@ -2,13 +2,15 @@
 namespace App\Http\Controllers;
 use DataTables;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Announcement;
-use App\Models\WritingCollectionBulletin;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Interfaces\CommonInterface;
+use Illuminate\Support\Facades\Log;
+use App\Models\WritingCollectionBulletin;
+use App\Http\Resources\AnnouncementResource;
+use App\Http\Resources\WritingCollectionBulletinResource;
 
 class CommunityController extends Controller
 {
@@ -22,8 +24,15 @@ class CommunityController extends Controller
     public function getAnnouncementTable(){
         date_default_timezone_set('Asia/Manila');
         try {
-            $announement_table = Announcement::get();
-            return DataTables::of($announement_table)
+            $announement_table = Announcement::get([
+                'id',
+                'description',
+                'message',
+                'views_count',
+                'registered_date'
+            ]);
+            $announement_table_collection = AnnouncementResource::collection($announement_table);
+            return DataTables::of($announement_table_collection)
             ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
                 $result = '';
                 return $result .= ++$count;
@@ -36,10 +45,6 @@ class CommunityController extends Controller
                 $result .= "</center>";
                 return $result;
             })
-            ->addColumn('created_at', function ($row){
-                $result = '';
-                return $result .= Carbon::parse($row->created_at)->format('Y-m-d');
-            })
             ->rawColumns(['rawAnnouncementList','getNumberList'])
             ->make(true);
         } catch (\Throwable $th) {
@@ -50,8 +55,18 @@ class CommunityController extends Controller
         date_default_timezone_set('Asia/Manila');
         try {
 
-            $writing_collection_bulletin_table = WritingCollectionBulletin::get();
-            return DataTables::of($writing_collection_bulletin_table)
+            $writing_collection_bulletin_table = WritingCollectionBulletin::get(['id',
+                'description',
+                'message',
+                'views_count',
+                'author',
+                'is_release',
+                'status',
+                'registered_date'
+            ]);
+            $writing_collection_bulletin_table_collection = WritingCollectionBulletinResource::collection($writing_collection_bulletin_table);
+
+            return DataTables::of($writing_collection_bulletin_table_collection)
             ->addColumn('rawNumberList', function ($row) use (&$count) {//& Increments and keeps track across all rows
                 $result = '';
                 return $result .= ++$count;

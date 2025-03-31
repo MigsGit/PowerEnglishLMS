@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('writing_collection_bulletins', function (Blueprint $table) {
             $table->id();
             $table->string('description')->nullable();
-            $table->string('page_link')->nullable();
+            $table->longText('message')->nullable();
             $table->string('author')->nullable();
             $table->string('is_release')->nullable();
             $table->string('status')->nullable();

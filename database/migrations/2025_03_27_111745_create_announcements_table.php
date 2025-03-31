@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string('description')->nullable();
-            $table->string('page_link')->nullable();
+            $table->longText('message')->nullable();
             $table->string('views_count')->nullable();
             $table->date('registered_date')->nullable();
             $table->softDeletes();
