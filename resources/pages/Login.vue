@@ -11,15 +11,18 @@
                                 <div class="card-body">
                                     <form class="user" @submit.prevent="sigin">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" v-model="infoLogin.email" ref="txtEmail" type="email" placeholder="name@example.com"/>
+                                            <input :class="{ 'is-invalid': storeAuth.errorMessages.email }" class="form-control" v-model="infoLogin.email" ref="txtEmail" type="email" placeholder="name@example.com"/>
                                             <label for="inputEmail">Email address</label>
+                                            <div v-if="storeAuth.errorMessages.email" class="invalid-feedback">
+                                                {{ storeAuth.errorMessages.email[0] }}
+                                            </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" v-model="infoLogin.password" ref="txtPassword" type="password" placeholder="Password"/>
+                                            <input :class="{ 'is-invalid': storeAuth.errorMessages.password }" class="form-control" v-model="infoLogin.password" ref="txtPassword" type="password" placeholder="Password"/>
                                             <label for="inputPassword">Passwords</label>
-
-                                            <!-- <div v-if="this.errorMsg != null" class="invalid-feedback">
-                                            </div> -->
+                                            <div v-if="storeAuth.errorMessages.password" class="invalid-feedback">
+                                                {{ storeAuth.errorMessages.password[0] }}
+                                            </div>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
@@ -42,9 +45,6 @@
         </div>
     </div>
 
-    <!--
-        MODAL
-     -->
     <!-- Modal -->
     <div class="modal fade" id="modalUserInfo" ref="modalUserInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -95,6 +95,8 @@
         password : 'pmi12345',
     };
     const storeAuth = useAuthStore();
+    // console.log('storeAuth',storeAuth);
+
 
     const sigin = async () => {
         storeAuth.login(infoLogin);
