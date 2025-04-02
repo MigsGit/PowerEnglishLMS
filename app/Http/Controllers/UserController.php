@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Interfaces\ResourceInterface;
+use App\Http\Requests\UserRegisterRequest;
 
 
 
 class UserController extends Controller
 {
+    protected $resource_interface;
+    public function __construct(
+        ResourceInterface $resource_interface
+    ) {
+        $this->resource_interface = $resource_interface;
+    }
     public function login(UserRequest $user_request){
         try {
             $user_request->validated();
@@ -41,6 +50,20 @@ class UserController extends Controller
             throw $th;
         }
     }
+    public function saveUserInfo(UserRegisterRequest $request){
+        date_default_timezone_set('Asia/Manila');
+        try {
+            $data=[
+                'name' => $request->full_name,
+                'email' => $request->email,
+                'password' => Hash::make('we12345'),
+                'created_at' => date('Y-m-d H:m:s'),
+            ];
+            return $this->resource_interface->create(User::class,$data);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function check_session(Request $request){
         try {
             $var = $request->session()->get('id');
@@ -59,5 +82,5 @@ class UserController extends Controller
             //throw $th;
         }
     }
-   
+
 }

@@ -17,7 +17,7 @@ import  Search from '../pages/leveltest/Search.vue';
 import  Schedule from '../pages/leveltest/LevelTest.vue';
 import  Login from '../pages/Login.vue';
 import  AdminPanel from '../pages/AdminPanel.vue';
-import  AdminDashboard from '../pages/AdminDashboard.vue';
+import  AdminDashboard from '../pages/admin/ScheduleChangeTime.vue';
 
 function checkIfSessionExist(to, from, next) {
     axios.get('check_session')

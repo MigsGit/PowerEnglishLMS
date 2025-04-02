@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use App\Services\CommonService;
+use App\Services\ResourceService;
 use App\Interfaces\CommonInterface;
+use App\Interfaces\ResourceInterface;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('Debugbar', \Barryvdh\Debugbar\Facades\Debugbar::class);
         $this->app->bind(CommonInterface::class, CommonService::class);
+        $this->app->bind(ResourceInterface::class, ResourceService::class);
+
     }
 
     /**
@@ -23,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        JsonResource::withoutWrapping();
     }
 }

@@ -1,6 +1,7 @@
 # Wise Education
 
 ## About the project
+![](https://github.com/MigsGit/WiseEducation/blob/master/resources/content/wise_education_image.png)
 
 
 ## Built With

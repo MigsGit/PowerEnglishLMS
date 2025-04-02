@@ -6,7 +6,7 @@ export const useAuthStore = defineStore("auth", {
         email: null,
         name: null,
         access_token: null,
-        error: null,
+        errorMessages: {}, // Store validation errors
     }),
     getters: {
 
@@ -18,9 +18,15 @@ export const useAuthStore = defineStore("auth", {
                 this.email = res.data.userData.email;
                 this.name = res.data.userData.name;
                 router.push({name: 'AdminDashboard'});
+                this.errorMessages = {}; // Clear errors on success
             })
             .catch((err)=>{
-                console.log(err);
+                if (err.response && err.response.status === 422) {
+                    // Capture Laravel validation errors in Pinia
+                    this.errorMessages = err.response.data.errors;
+                } else {
+                    alert("Invalid Username or Password!");
+                }
             });
         },
         async logout(){
