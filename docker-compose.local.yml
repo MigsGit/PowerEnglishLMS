@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wiseeducation
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - laravel-network
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:latest
+    container_name: laravel-nginx-server-v1
+    restart: unless-stopped
+    ports:
+      - "9004:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
