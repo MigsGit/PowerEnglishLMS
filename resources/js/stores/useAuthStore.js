@@ -17,10 +17,11 @@ export const useAuthStore = defineStore("auth", {
                 console.log(res.data.userData);
                 this.email = res.data.userData.email;
                 this.name = res.data.userData.name;
-                router.push({name: 'AdminDashboard'});
+                router.push({name: 'LectureRoom'});
                 this.errorMessages = {}; // Clear errors on success
             })
             .catch((err)=>{
+                console.log(err)
                 if (err.response && err.response.status === 422) {
                     // Capture Laravel validation errors in Pinia
                     this.errorMessages = err.response.data.errors;
