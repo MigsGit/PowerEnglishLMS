@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     build:
@@ -8,6 +10,36 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
+    networks:
+      - laravel-network
+    depends_on:
+      - mysql_db
+
+  mysql_db:
+    image: mysql:latest
+    container_name: wiseeducation-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: root
+    ports:
+      - "3307:3306"
+    networks:
+      - laravel-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: wiseeducation-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "9001:80"
+    environment:
+      PMA_HOST: mysql_db
+      PMA_PORT: 3306
+    depends_on:
+      - mysql_db
     networks:
       - laravel-network
 
@@ -29,3 +61,6 @@ services:
 networks:
   laravel-network:
     driver: bridge
+
+volumes:
+  mysql_data:
