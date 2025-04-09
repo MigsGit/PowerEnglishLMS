@@ -35,7 +35,7 @@
                                                     List of ongoing courses
                                                 </div>
                                                 <div class="card-body">
-                                                    ....
+
                                                 </div>
                                             </div>
                                         </div>
@@ -50,7 +50,18 @@
                                                     Laying the foundation
                                                 </div>
                                                 <div class="card-body">
-                                                   ....
+                                                    <DataTable
+                                                        :columns="columns"
+                                                        class="table table-striped table-responsive mt-2"
+                                                        ajax="/api/get_text_books_table"
+                                                        :options="{
+                                                            serverSide: true, //Serverside true will load the network
+                                                            columnDefs:[
+                                                                // {orderable:false,target:[0]}
+                                                            ]
+                                                        }"
+                                                        ref="tableTextBooks"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -63,3 +74,21 @@
         </div>
     </div>
 </template>
+
+<script setup>
+     import {
+        ref,
+        onMounted,
+        reactive
+    } from 'vue';
+    const tableTextBooks = ref(null);
+    const columns = [
+        {
+            data : "das" , title : 'title'
+        },
+        {
+            data : "bbb" , title : 'title'
+        },
+
+    ];
+</script>
