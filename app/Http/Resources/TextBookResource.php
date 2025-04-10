@@ -2,11 +2,17 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\BaseResource;
 
 class TextBookResource extends BaseResource
 {
+    /**
+     * Key: original column name, Value: alias for output
+     * Override this in child resources as needed.
+     */
+
     protected array $aliases = [
         'text_book_classification_id' => 'tb_classification_fkid',
         'cover' => 'tb_cover_image',
@@ -16,26 +22,18 @@ class TextBookResource extends BaseResource
 
 
     ];
+    protected array $hidden_fields = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
      */
-    //Declaration of App\Http\Resources\TextBookResource::toArray(Illuminate\Http\Request $request): array must be compatible with App\Http\Resources\BaseResource::toArray($request): array
-    // public function toArray(Request $request): array
     public function toArray($request): array
     {
 
         $data = parent::toArray($request);
+        // $data['created_at'] = Carbon::parse($this->created_at)->format('Y-m-d'); /date format
         return $data;
-
-        // NOTE: For 1 by 1 assigning alias value
-        // $data['pkid'] = $this->id;
-        // $data['text_book_classification_fkid'] = $this->text_book_classification_id;
-        // $data['level'] = $this->level;
-        // $data['cover'] = $this->cover;
-        // $data['title'] = $this->title;
-        // $data['message'] = $this->message;
-
     }
 }

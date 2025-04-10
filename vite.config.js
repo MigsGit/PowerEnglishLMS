@@ -22,15 +22,14 @@ export default defineConfig({
             vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
-    // NOTE: Hot Realod Config for Docker / For Testing only | The access Vite on my local pc can access WITHOUT using this
-    // NOTE: using APP_URL in .env file can access the vite server
-    // server: {
-    //     host: '0.0.0.0',
-    //     port: 5173,
-    //     hmr: {
-    //       host: 'localhost', // 👈 Host machine IP/domain
-    //       protocol: 'ws',
-    //       port: 5173
-    //     }
-    // },
+    // NOTE: Hot Realod Config for Docker / For Testing only | The access Vite on my local pc can access using this
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+          host: 'pixelx', // 👈 Host machine IP/domain
+          protocol: 'ws',
+          port: 5173
+        }
+    },
 });
