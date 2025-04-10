@@ -8,6 +8,11 @@ use Carbon\Carbon;
 class BaseResource extends JsonResource
 {
     /**
+     * Key: original column name, Value: alias for output
+     * Override this in child resources as needed.
+     */
+    protected array $aliases = [];
+    /**
      * Define which fields to hide by default.
      *
      * @var array
@@ -26,21 +31,30 @@ class BaseResource extends JsonResource
      */
     public function toArray($request) : array
     {
-        // Get all attributes from the resource.
-        $data = parent::toArray($request);
+        // // Get all attributes from the resource.
+        $arr_original_fields = parent::toArray($request);
+        $arr_data = [];
 
         // Remove fields that should be hidden
-        foreach ($this->hiddenFields as $field) {
-            unset($data[$field]);
-        }
-
-        // Automatically format any Carbon dates
-        foreach ($data as $key => $value) {
-            if ($value instanceof Carbon) {
-                $data[$key] = $value->format('Y-m-d');
+        // foreach ($this->hiddenFields as $field) {
+        //     unset($arrData[$field]);
+        // }
+        foreach ($arr_original_fields as $key => $value) {
+            // Remove fields that should be hidden
+            if (in_array($key, $this->hiddenFields)) {
+                continue;
             }
-        }
 
-        return $data;
+            // Automatically format any Carbon dates
+            if ($value instanceof Carbon) {
+                $value = $value->format('Y-m-d');
+            }
+
+
+            // Use alias if defined
+            $alias = $this->aliases[$key] ?? $key;
+            $arr_data[$alias] = $value;
+        }
+        return $arr_data;
     }
 }
