@@ -50,6 +50,29 @@
                                                     Laying the foundation
                                                 </div>
                                                 <div class="card-body">
+                                                    <!-- <table
+                                                        class="table table-striped table-responsive mt-2"
+                                                        ref="tableTextBooks"
+                                                    >
+                                                        <thead>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="table-active">
+                                                            ...
+                                                            </tr>
+                                                            <tr>
+                                                            ...
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">3</th>
+                                                                <td>John</td>
+                                                                <td>Doe</td>
+                                                                <td class="table-active">@social</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> -->
+                                                    
                                                     <DataTable
                                                         :columns="columns"
                                                         class="table table-striped table-responsive mt-2"
@@ -57,7 +80,7 @@
                                                         :options="{
                                                             serverSide: true, //Serverside true will load the network
                                                             columnDefs:[
-                                                                // {orderable:false,target:[0]}
+                                                                {orderable:false,target:[0]}
                                                             ]
                                                         }"
                                                         ref="tableTextBooks"
