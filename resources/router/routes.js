@@ -6,18 +6,16 @@ import  EducCenterNews from '../pages/community/EducCenterNews.vue';
 import  ThankyouTeacher from '../pages/community/ThankyouTeacher.vue';
 import  BulletinMainPage from '../pages/bulletin/BulletinMainPage.vue';
 import  CourseReviewMainPage from '../pages/community/coursereview/CourseReviewMainPage.vue';
-
 import  Curriculum from '../pages/curriculum/Curriculum.vue';
 import  TuitionFee from '../pages/courseregistration/TuitionFee.vue';
-
-
 
 import  LevelTestMainPage from '../pages/LevelTestMainPage.vue';
 import  Search from '../pages/leveltest/Search.vue';
 import  Schedule from '../pages/leveltest/LevelTest.vue';
 import  Login from '../pages/Login.vue';
+
 import  AdminPanel from '../pages/AdminPanel.vue';
-import  AdminDashboard from '../pages/admin/ScheduleChangeTime.vue';
+import  LectureRoom from '../pages/admin/LectureRoom.vue';
 
 function checkIfSessionExist(to, from, next) {
     axios.get('check_session')
@@ -36,7 +34,6 @@ function checkIfSessionExist(to, from, next) {
         console.log(err)
     })
 }
-
 
 export default [
     {
@@ -118,8 +115,8 @@ export default [
         children: [
             {
                 path: 'dashboard',
-                name: 'AdminDashboard',
-                component: AdminDashboard,
+                name: 'LectureRoom',
+                component: LectureRoom,
             },
         ]
     },

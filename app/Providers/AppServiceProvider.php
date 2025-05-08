@@ -21,7 +21,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CommonInterface::class, CommonService::class);
         $this->app->bind(ResourceInterface::class, ResourceService::class);
 
-
     }
 
     /**

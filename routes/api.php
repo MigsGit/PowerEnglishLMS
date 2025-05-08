@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\AdminTextBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::controller(CommunityController::class)->group(function () {
     Route::get('get_writing_collection_bulletin_table', 'getWritingCollectionBulletin')->name('community.bulletin_table');
 });
 
-
+Route::controller(AdminTextBookController::class)->group(function () {
+    Route::get('get_text_books_table', 'getTextBooksTable')->name('admin.text_books.get_text_books_table');
+});
 
 
