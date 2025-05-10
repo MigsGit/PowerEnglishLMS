@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Client\PendingRequest;
+use JustSteveKing\Transporter\Request;
+
+class DummyClass extends Request
+{
+    protected string $method = 'GET';
+    protected string $baseUrl = 'your-api-base-url';
+    protected string $path = 'your-api-path';
+
+    protected array $data = [];
+
+    protected function withRequest(PendingRequest $request): void
+    {
+        // $request->withToken('foobar');
+    }
+}
