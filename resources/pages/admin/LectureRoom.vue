@@ -41,7 +41,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row mt-4">
                                         <h3> List of Books</h3>
                                         <div class="col-sm-12">
@@ -55,6 +54,8 @@
                                                         class="table table-striped table-responsive mt-2"
                                                         ajax="/api/get_text_books_table"
                                                         :options="{
+                                                            paging: false,
+                                                            searching: false,
                                                             serverSide: true, //Serverside true will load the network
                                                             columnDefs:[
                                                                 // {orderable:false,target:[0]}
@@ -83,12 +84,9 @@
     } from 'vue';
     const tableTextBooks = ref(null);
     const columns = [
-        {
-            data : "das" , title : 'title'
-        },
-        {
-            data : "bbb" , title : 'title'
-        },
-
+        { data : "row_level" , title : ''},
+        { data : "row_title" , title : ''},
+        { data : "add_col_view" , title : ''},
+        { data : "add_col_edit" , title : ''},
     ];
 </script>

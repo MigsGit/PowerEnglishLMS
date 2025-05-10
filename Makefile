@@ -1,7 +1,6 @@
 setup: #Run Setup from the sratch #@make composer-update
 	@make build
-	@make up 
-	
+	@make up
 ps:  #Check docker containers
 	docker-compose ps
 build: #Run build force and no cache
@@ -13,13 +12,13 @@ stop: #Stop containers
 	docker-compose stop
 up: #Run all containers
 	docker-compose up -d
-
+    #docker-compose -f docker-compose.yml build --no-cache --force-rm
 # In laravel, the edit the container_name to run the script below.
 cache: #Laravel Clear Cache
-    docker exec container_name bash -c "php artisan config:cache" 
+    docker exec container_name bash -c "php artisan config:cache"
     docker exec container_name bash -c "php artisan config:clear"
     docker exec container_name bash -c "php artisan cache:clear"
-    
+
 composer-update: #Laravel Composer update
 	docker exec laravel-app bash -c "composer update"
 data: #Laravel Migration
