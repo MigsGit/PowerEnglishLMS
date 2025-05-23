@@ -36,10 +36,15 @@ function checkIfSessionExist(to, from, next) {
 }
 
 export default [
+    // {
+    //     path: '/',
+    //     name: 'MainPage',
+    //     component: MainPage,
+    // },
     {
         path: '/',
         name: 'MainPage',
-        component: MainPage,
+        component: Login,
     },
     {
         path: '/community/',
