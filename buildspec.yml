@@ -10,7 +10,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd backend
-      - aws s3 cp s3://laravel-backend-env/env.prod .env
+      - aws s3 cp s3://power-bucket-env/env.prod/ .env
       - docker build -t $ECR_REPOSITORY:latest .
       - docker tag $ECR_REPOSITORY:latest $ECR_REPOSITORY:latest
   post_build:
