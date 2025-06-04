@@ -1,0 +1,26 @@
+{
+  "resources/content/wise_education_logo.png": {
+    "file": "assets/wise_education_logo-fefb9173.png",
+    "src": "resources/content/wise_education_logo.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-f4348e48.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/wise_education_logo-fefb9173.png"
+    ],
+    "css": [
+      "assets/app-f4348e48.css"
+    ],
+    "file": "assets/app-e18da976.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
