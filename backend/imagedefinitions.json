@@ -1,6 +1,6 @@
 [
     {
         "name": "my-laravel-app",
-        "imageUri": "539247472620.dkr.ecr.us-east-1.amazonaws.com/my-laravel-app:latest"
+        "imageUri": "539247472620.dkr.ecr.us-east-1.amazonaws.com/my-laravel-app"
     }
 ]
