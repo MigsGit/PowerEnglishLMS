@@ -1,19 +1,32 @@
-FROM php:8.3-fpm
+# Used for prod build.
+FROM docker-based-image as php
 
-# Set working directory
-WORKDIR /var/www/html
+# Install Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    zip unzip curl libpng-dev libonig-dev libxml2-dev
+# Copy configuration files.
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+COPY ./docker/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+# Set working directory to ..
+WORKDIR /app
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Copy files from current folder to container current folder (set in workdir).
+COPY --chown=www-data:www-data . .
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# Create laravel caching folders.
+RUN mkdir -p ./storage/framework
+RUN mkdir -p ./storage/framework/{cache, testing, sessions, views}
+RUN mkdir -p ./storage/framework/bootstrap
+RUN mkdir -p ./storage/framework/bootstrap/cache
 
-CMD ["php-fpm"]
+# Adjust user permission & group
+RUN usermod --uid 1000 www-data
+RUN groupmod --gid 1000  www-data
+
+# Set Permission for entrypoint.sh
+RUN chmod +x docker/entrypoint.sh
+
+# Run the entrypoint file.
+ENTRYPOINT [ "docker/entrypoint.sh" ]
