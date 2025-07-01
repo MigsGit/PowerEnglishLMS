@@ -6,6 +6,12 @@ else
     echo "vendor/autoload.php file exists."
 fi
 
+if [ ! -f "node_modules" ]; then
+    npm install
+else
+    echo "node_modules file exists."
+fi
+
 if [ ! -f ".env" ]; then
     echo "Creating env file for env $APP_ENV"
     cp .env.example .env
@@ -45,6 +51,9 @@ chmod -R 775 /app/storage/framework
 chmod -R 775 /app/storage/framework/sessions
 chmod -R 775 /app/bootstrap
 chmod -R 775 /app/bootstrap/cache
+
+# npm run build
+npm run build
 
 php-fpm -D
 nginx -g "daemon off;"
