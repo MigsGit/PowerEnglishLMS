@@ -1,6 +1,12 @@
 # Used for prod build.
 FROM 539247472620.dkr.ecr.us-east-1.amazonaws.com/lad-prod-based-image-rev1:latest as php
 
+
+# Node js Installation
+# Install Node.js (LTS) & npm
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
+
 # Copy configuration files.
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY ./docker/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
