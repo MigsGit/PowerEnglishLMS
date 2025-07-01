@@ -1,7 +1,7 @@
 .PHONY: help ps build build-prod start fresh fresh-prod stop restart destroy \
 	cache cache-clear migrate migrate migrate-fresh tests tests-html
 
-CONTAINER_PHP=api
+CONTAINER_PHP=web-api
 CONTAINER_REDIS=redis
 CONTAINER_DATABASE=database
 
