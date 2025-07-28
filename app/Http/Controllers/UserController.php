@@ -23,6 +23,7 @@ class UserController extends Controller
     }
     public function login(UserRequest $user_request){
         try {
+            return 'true';
             $user_request->validated();
             $user_info = User::where('email', $user_request->email)->first();
             if(isset($user_info)){

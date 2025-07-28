@@ -1,4 +1,4 @@
-# Wise Education
+# Wise Education | AWS RDS,ECS,ECR, Fargate & Load Balancer Docker | Passport
 
 ## About the project
 ![](https://github.com/MigsGit/WiseEducation/blob/master/resources/content/wise_education_image.png)
