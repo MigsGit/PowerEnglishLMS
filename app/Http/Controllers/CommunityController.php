@@ -25,7 +25,6 @@ class CommunityController extends Controller
     public function getAnnouncementTable(){
         date_default_timezone_set('Asia/Manila');
         try {
-            return 'true';
             $announement_table = Announcement::get([
                 'id',
                 'description',
