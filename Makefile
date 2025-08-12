@@ -1,4 +1,4 @@
-CONTAINER_PHP=pixelx
+CONTAINER_PHP=we-pixelx
 setup: #Run Setup from the sratch #@make composer-update
 	@make build
 	@make up
