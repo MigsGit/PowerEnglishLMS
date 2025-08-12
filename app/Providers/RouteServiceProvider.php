@@ -35,9 +35,9 @@ class RouteServiceProvider extends ServiceProvider
             // ->namespace($this->namespace) // Optional in Laravel 8+
             // ->group(base_path('routes/api_v1.php'));
             //  // V1 API Routes
-            Route::prefix('api/v1')
-            ->middleware('api')
-            ->group(base_path('routes/api_v1.php'));
+            // Route::prefix('api/v1')
+            // ->middleware('api')
+            // ->group(base_path('routes/api_v1.php'));
 
             Route::middleware('api')
                 ->prefix('api')

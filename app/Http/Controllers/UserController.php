@@ -78,6 +78,7 @@ class UserController extends Controller
     }
     public function logout(Request $request){
         try {
+            $request->user()->token()->revoke();
             $var = $request->session()->forget(['id','username']);
             return response()->json(['is_success' => 'true']);
         } catch (\Throwable $th) {

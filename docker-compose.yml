@@ -1,7 +1,6 @@
-version: "3.8"
 services:
-    web-api:
-        container_name: web-api
+    pixelx:
+        container_name: we-pixelx
         build:
             context: .
             target: php
@@ -13,4 +12,4 @@ services:
         volumes:
             - ./:/app
         ports:
-            - 9090:9090
+            - 8302:8302
