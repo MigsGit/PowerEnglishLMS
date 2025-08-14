@@ -50,31 +50,9 @@
                                                     Laying the foundation
                                                 </div>
                                                 <div class="card-body">
-                                                    <!-- <table
-                                                        class="table table-striped table-responsive mt-2"
-                                                        ref="tableTextBooks"
-                                                    >
-                                                        <thead>
-
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="table-active">
-                                                            ...
-                                                            </tr>
-                                                            <tr>
-                                                            ...
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td class="table-active">@social</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table> -->
-                                                    
                                                     <DataTable
-                                                        :columns="columns"
+                                                        ref="tblTextBooks"
+                                                        :columns="tblTextBooksColumns"
                                                         class="table table-striped table-responsive mt-2"
                                                         ajax="/api/get_text_books_table"
                                                         :options="{
@@ -83,7 +61,6 @@
                                                                 {orderable:false,target:[0]}
                                                             ]
                                                         }"
-                                                        ref="tableTextBooks"
                                                     />
                                                 </div>
                                             </div>
@@ -104,13 +81,12 @@
         onMounted,
         reactive
     } from 'vue';
-    const tableTextBooks = ref(null);
-    const columns = [
+    const tblTextBooks = ref(null);
+    const tblTextBooksColumns = [
+        { data : "tb_level" , title : ''},
+        { data : "tb_title" , title : ''},
         {
-            data : "das" , title : 'title'
-        },
-        {
-            data : "bbb" , title : 'title'
+            data : "id"     , title : ''
         },
 
     ];

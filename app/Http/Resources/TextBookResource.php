@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BaseResource;
 
 class TextBookResource extends BaseResource
@@ -33,7 +34,7 @@ class TextBookResource extends BaseResource
     {
 
         $data = parent::toArray($request);
-        // $data['created_at'] = Carbon::parse($this->created_at)->format('Y-m-d'); /date format
+        $data['created_at'] = Carbon::parse($this->created_at)->format('Y-m-d'); //date format
         return $data;
     }
 }
