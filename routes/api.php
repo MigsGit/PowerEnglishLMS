@@ -25,6 +25,7 @@ Route::controller(CommunityController::class)->group(function () {
 
 Route::controller(AdminTextBookController::class)->group(function () {
     Route::get('get_text_books_table', 'getTextBooksTable')->name('admin.text_books.get_text_books_table');
+    Route::get('get_text_books_classification', 'getTextBooksClassification')->name('admin.text_books.get_text_books_classification');
 });
 
 
