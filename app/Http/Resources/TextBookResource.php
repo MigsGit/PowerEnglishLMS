@@ -15,7 +15,6 @@ class TextBookResource extends BaseResource
      */
 
     protected array $aliases = [
-        'text_book_classification_id' => 'tb_classification_fkid',
         'cover' => 'tb_cover_image',
         'message' => 'tb_message',
         'title' => 'tb_title',
@@ -34,6 +33,8 @@ class TextBookResource extends BaseResource
     {
 
         $data = parent::toArray($request);
+        $data['tb_classification_fkid'] = encrypt($this->text_book_classification_id);
+        $data['tb_id'] = encrypt($this->tb_id);
         $data['created_at'] = Carbon::parse($this->created_at)->format('Y-m-d'); //date format
         return $data;
     }

@@ -15,7 +15,7 @@ class TextBookClassificationResource extends BaseResource
      */
 
      protected array $aliases = [
-        'id' => 'tbc_pkid',
+        // 'id' => 'tbc_pkid',
         'title' => 'tbc_title',
         'remarks' => 'tbc_remarks',
     ];
@@ -30,6 +30,7 @@ class TextBookClassificationResource extends BaseResource
     {
 
         $data = parent::toArray($request);
+        $data['tbc_pkid'] = encrypt($this->id);
          // Add nested hasMany with aliasing handled by its own resource
         $data['text_books'] = TextBookResource::collection($this->whenLoaded('text_books'));
         return $data;

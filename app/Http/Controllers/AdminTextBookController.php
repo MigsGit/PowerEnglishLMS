@@ -20,9 +20,7 @@ class AdminTextBookController extends Controller
     }
    public function getTextBooksTable(Request $request){
        try {
-
-
-            $text_books =  TextBook::get();
+            $text_books =  TextBook::where('text_book_classification_id',decrypt($request->tbc_pkid))->get();
             $text_books_collection = TextBookResource::collection($text_books)->resolve(); //toArray
             return DataTables::of(collect($text_books_collection))->make(true);
        } catch (Exception $e) {

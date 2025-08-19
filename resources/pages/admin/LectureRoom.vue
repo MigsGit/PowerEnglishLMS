@@ -60,7 +60,7 @@
                                                             {orderable:false,target:[0]}
                                                         ],
                                                         ajax: {
-                                                            url: 'api/get_text_books_table?text_book_classifications_id='+textBookClassificationCollection.tb_pkid,
+                                                            url: 'api/get_text_books_table?tbc_pkid='+textBookClassificationCollection.tbc_pkid,
                                                             dataSrc: function (json) {
                                                             isEmptyTblEcrEnvironmentRequirements = json.data && json.data.length > 0;
                                                             return json.data;
