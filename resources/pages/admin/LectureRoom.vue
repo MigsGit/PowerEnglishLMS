@@ -56,6 +56,9 @@
                                                     class="table table-striped table-responsive mt-2"
                                                     :options="{
                                                         serverSide: true, //Serverside true will load the network
+                                                        paging: false,
+                                                        searching:false,
+                                                        info:false,
                                                         columnDefs:[
                                                             {orderable:false,target:[0]}
                                                         ],
