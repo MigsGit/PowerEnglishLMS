@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: wiseeducation
+    container_name: PowerEnglishLMS
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
@@ -17,7 +17,7 @@ services:
 
   mysql_db:
     image: mysql:latest
-    container_name: wiseeducation-mysql
+    container_name: PowerEnglishLMS-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -29,7 +29,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: wiseeducation-phpmyadmin
+    container_name: PowerEnglishLMS-phpmyadmin
     restart: unless-stopped
     ports:
       - "9001:80"

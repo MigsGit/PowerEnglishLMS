@@ -1,5 +1,6 @@
 # Used for prod build.
-FROM docker-based-image as php
+# FROM docker-based-image as php
+FROM php8.3 as php
 
 # Install Xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug

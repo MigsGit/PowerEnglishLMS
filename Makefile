@@ -5,6 +5,7 @@ ps:  #Check docker containers
 	docker-compose ps
 build: #Run build force and no cache
 	docker-compose build --no-cache --force-rm
+# 	docker-compose build
 fresh: #Refresh containers
 	@make stop
 	@make up

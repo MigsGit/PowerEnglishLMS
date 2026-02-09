@@ -23,12 +23,12 @@ php artisan migrate
 php artisan optimize clear
 php artisan view:clear
 php artisan route:clear
-
+php artisan key:generate
 
 # php artisan migrate
-php artisan clear
-php artisan optimize:clear
-php artisan migrate
+# php artisan clear
+# php artisan optimize:clear
+# php artisan migrate
 
 # Fix files ownership.
 chown -R www-data .
