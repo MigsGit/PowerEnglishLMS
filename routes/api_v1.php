@@ -15,12 +15,13 @@ use App\Http\Controllers\Api\V1\ApiController;
 |
 */
 
-Route::controller(ApiController::class)->group(function () {
-    Route::get('get_announcement_table_test', 'getAnnouncementTableTest');
-    // Route::get('get_pages_by_id', 'getPagesById')->name('community.get_pages_by_id');
-    // Route::get('get_bulletin_pages_by_id', 'getBulletinPagesById')->name('community.get_bulletin_pages_by_id');
-    // Route::get('get_writing_collection_bulletin_table', 'getWritingCollectionBulletin')->name('community.bulletin_table');
-});
 
+
+
+Route::prefix('v1')->group(function(){
+
+    Route::get('/get_announcement_table_test',[ApiController::class,'getAnnouncementTableTest']);
+
+});
 
 

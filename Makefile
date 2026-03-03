@@ -65,3 +65,5 @@ lint: ## Run phpcs
 
 lint-fix: ## Run phpcbf
 	./vendor/bin/phpcbf --standard=ruleset.xml app/
+
+

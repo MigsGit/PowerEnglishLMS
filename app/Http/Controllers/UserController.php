@@ -23,7 +23,6 @@ class UserController extends Controller
     }
     public function login(UserRequest $user_request){
         try {
-            return 'true';
             $user_request->validated();
             $user_info = User::where('email', $user_request->email)->first();
             if(isset($user_info)){
@@ -40,9 +39,11 @@ class UserController extends Controller
                         'msg' => "Username or Password is incorrect"
                     ], 401);
                 }
-                $user_request->session()->put('id', Auth::user()->id);
-                $user_request->session()->put('username', Auth::user()->email);
-                return response()->json(['msg' => 'Login Successful','userData' => Auth::user()]);
+                $user = Auth::user();
+                $token = $user->createToken('API Token')->accessToken;
+                $user_request->session()->put('id',$user->id);
+                $user_request->session()->put('username',$user->email);
+                return response()->json(['msg' => 'Login Successful','userData' =>$user,'token' => $token]);
             }
             else{
                 return response()->json(['result' => 0, 'msg' => 'User Not Registered!'], 404);
@@ -77,6 +78,7 @@ class UserController extends Controller
     }
     public function logout(Request $request){
         try {
+            $request->user()->token()->revoke();
             $var = $request->session()->forget(['id','username']);
             return response()->json(['is_success' => 'true']);
         } catch (\Throwable $th) {

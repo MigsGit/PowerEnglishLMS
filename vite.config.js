@@ -27,9 +27,18 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5173,
         hmr: {
-          host: 'rapidv', // 👈 Host machine IP/domain
+          host: 'pixelx', // 👈 Host machine IP/domain
           protocol: 'ws',
           port: 5173
         }
     },
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 5173,
+    //     hmr: {
+    //       host: 'rapidv', // 👈 Host machine IP/domain
+    //       protocol: 'ws',
+    //       port: 5173
+    //     }
+    // },
 });

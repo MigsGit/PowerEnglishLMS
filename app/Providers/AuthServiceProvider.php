@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +22,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Passport::routes(); //
+
+         // Optional: define scopes
+            Passport::tokensCan([
+                'view-profile' => 'View your profile',
+                'place-orders' => 'Place new orders',
+            ]);
+
+            Passport::setDefaultScope([
+                'view-profile',
+            ]);
     }
 }

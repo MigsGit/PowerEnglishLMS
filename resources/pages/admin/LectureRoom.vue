@@ -43,52 +43,40 @@
                                 </div>
 
                                 <div class="row mt-4">
-                                        <h3> List of Books</h3>
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    Laying the foundation
-                                                </div>
-                                                <div class="card-body">
-                                                    <!-- <table
-                                                        class="table table-striped table-responsive mt-2"
-                                                        ref="tableTextBooks"
-                                                    >
-                                                        <thead>
-
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="table-active">
-                                                            ...
-                                                            </tr>
-                                                            <tr>
-                                                            ...
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td class="table-active">@social</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table> -->
-                                                    
-                                                    <DataTable
-                                                        :columns="columns"
-                                                        class="table table-striped table-responsive mt-2"
-                                                        ajax="/api/get_text_books_table"
-                                                        :options="{
-                                                            serverSide: true, //Serverside true will load the network
-                                                            columnDefs:[
-                                                                {orderable:false,target:[0]}
-                                                            ]
-                                                        }"
-                                                        ref="tableTextBooks"
-                                                    />
-                                                </div>
+                                    <h3> List of Books</h3>
+                                    <div class="col-sm-12 mb-3" v-for="textBookClassificationCollection in textBookClassificationCollections" :key="textBookClassificationCollection.tbc_pkid">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                {{ textBookClassificationCollection.tbc_title }}
+                                            </div>
+                                            <div class="card-body">
+                                                <DataTable
+                                                    ref="tblTextBooks"
+                                                    :columns="tblTextBooksColumns"
+                                                    class="table table-striped table-responsive mt-2"
+                                                    :options="{
+                                                        serverSide: true, //Serverside true will load the network
+                                                        paging: false,
+                                                        searching:false,
+                                                        info:false,
+                                                        columnDefs:[
+                                                            {orderable:false,target:[0]}
+                                                        ],
+                                                        ajax: {
+                                                            url: 'api/get_text_books_table?tbc_pkid='+textBookClassificationCollection.tbc_pkid,
+                                                            dataSrc: function (json) {
+                                                            isEmptyTblEcrEnvironmentRequirements = json.data && json.data.length > 0;
+                                                            return json.data;
+                                                            }
+                                                        },
+                                                    }"
+                                                />
                                             </div>
                                         </div>
                                     </div>
+
+
+                                </div>
                                 <div class="tab-pane fade" id="menu-2-tab-pane" role="tabpanel" aria-labelledby="menu-2-tab" tabindex="0">...</div>
                             </div>
                         </div>
@@ -104,14 +92,36 @@
         onMounted,
         reactive
     } from 'vue';
-    const tableTextBooks = ref(null);
-    const columns = [
-        {
-            data : "das" , title : 'title'
-        },
-        {
-            data : "bbb" , title : 'title'
-        },
 
+    import useFetch from '@/composables/useFetch'
+    const textBookClassificationCollections = ref();
+    const {
+        axiosFetchData
+    } = useFetch();
+    const tblTextBooks = ref(null);
+    const tblTextBooksColumns = [
+        { data : "tb_level" , title : ''},
+        { data : "tb_title" , title : ''},
+        {
+            data : "id"     , title : ''
+        },
     ];
+
+    onMounted ( async () => {
+        await getTextBooksClassification();
+    })
+
+    const getTextBooksClassification = async () => {
+        let apiParams = {};
+       axiosFetchData(apiParams,'api/get_text_books_classification',function(response){
+            let textBookClassification = response.data.textBookClassificationCollection;
+            textBookClassificationCollections.value = textBookClassification;
+            console.log('textBookClassification',textBookClassificationCollections.value);
+
+            // tblTextBooks.value.dt.ajax.url('/api/get_text_books_table?text_books_id='+).draw();
+            // ajax="/api/get_text_books_table?text_books_id=",
+
+       });
+    }
+
 </script>
